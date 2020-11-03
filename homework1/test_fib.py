@@ -1,5 +1,5 @@
 import pytest
-from fib import check_fibonacci
+from tasks.fib import check_fibonacci
 
 
 @pytest.mark.parametrize(
