@@ -8,4 +8,12 @@ from typing import List
 
 
 def check_sum_of_four(a: List[int], b: List[int], c: List[int], d: List[int]) -> int:
-    ...
+    n1, n2, n3, n4 = len(a), len(b), len(c), len(d)
+    counter = 0
+    for i in range(n1):
+        for j in range(n2):
+            for k in range(n3):
+                for m in range(n4):
+                    if a[i] + b[j] + c[k] + d[m] == 0:
+                        counter += 1
+    return counter
