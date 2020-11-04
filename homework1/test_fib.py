@@ -13,7 +13,6 @@ def test_check_fibonacci(value: [int], expected_result: bool):
     """
     test for fib.py check_fibonacci method
     use 'pytest test_fib.py' in console log for testing
-    :type value: [int]
     """
     actual_result = check_fibonacci(value)
     assert actual_result == expected_result

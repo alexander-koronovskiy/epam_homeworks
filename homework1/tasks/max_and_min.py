@@ -21,6 +21,3 @@ def find_maximum_and_minimum(file_name: str) -> Tuple[int, int]:
                 break
     nums = list(map(int, words.split()))
     return min(nums), max(nums)
-
-
-print(find_maximum_and_minimum("numbers.txt"))
