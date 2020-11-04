@@ -1,17 +1,19 @@
+from typing import Tuple
+
 import pytest
-from tasks.sub_arrays import find_maximal_sub_array_sum
+from homework1.tasks.max_and_min import find_maximum_and_minimum
 
 
 @pytest.mark.parametrize(
-    ["array", "chunk", "expected_result"],
+    ["file", "expected_result"],
     [
-        ([1, 3, -1, -3, 5, 3, 6, 7], 3, 16),
+        ("tasks/numbers.txt", (0, 9)),
     ],
 )
-def test_max_sub_sum(array: [int], chunk: int, expected_result: bool):
+def test_max_sub_sum(file: str, expected_result: Tuple[int, int]):
     """
     test for fib.py check_fibonacci method
     use 'pytest test_fib.py' in console log for testing
     """
-    actual_result = find_maximal_sub_array_sum(array, chunk)
+    actual_result = find_maximum_and_minimum(file)
     assert actual_result == expected_result

@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac54e09c-a7fe-40b6-9410-3bf89a41f970" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/homework1/test_arr.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/homework1/test_max.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homework1/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/homework1/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homework1/tasks/max_and_min.py" beforeDir="false" afterPath="$PROJECT_DIR$/homework1/tasks/max_and_min.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homework1/tasks/sub_arrays.py" beforeDir="false" afterPath="$PROJECT_DIR$/homework1/tasks/sub_arrays.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homework1/test03.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/homework1/test04.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework1/test_arr.py" beforeDir="false" afterPath="$PROJECT_DIR$/homework1/test_arr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework1/test_calc.py" beforeDir="false" afterPath="$PROJECT_DIR$/homework1/test_calc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homework1/test_fib.py" beforeDir="false" afterPath="$PROJECT_DIR$/homework1/test_fib.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework1/test_max.py" beforeDir="false" afterPath="$PROJECT_DIR$/homework1/test_max.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +27,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/homework1/tasks/sub_arrays.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.sub_arrays">
+  <component name="RunManager" selected="Python.max_and_min">
     <configuration name="max_and_min" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="epam courses" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -110,22 +107,22 @@
       <screen x="0" y="0" width="1536" height="826" />
     </state>
     <state x="820" y="185" key="FileChooserDialogImpl/0.0.1536.826@0.0.1536.826" timestamp="1604484010606" />
-    <state width="1514" height="206" key="GridCell.Tab.0.bottom" timestamp="1604484087997">
+    <state width="1514" height="206" key="GridCell.Tab.0.bottom" timestamp="1604487120817">
       <screen x="0" y="0" width="1536" height="826" />
     </state>
-    <state width="1514" height="206" key="GridCell.Tab.0.bottom/0.0.1536.826@0.0.1536.826" timestamp="1604484087997" />
-    <state width="1514" height="206" key="GridCell.Tab.0.center" timestamp="1604484087997">
+    <state width="1514" height="206" key="GridCell.Tab.0.bottom/0.0.1536.826@0.0.1536.826" timestamp="1604487120817" />
+    <state width="1514" height="206" key="GridCell.Tab.0.center" timestamp="1604487120817">
       <screen x="0" y="0" width="1536" height="826" />
     </state>
-    <state width="1514" height="206" key="GridCell.Tab.0.center/0.0.1536.826@0.0.1536.826" timestamp="1604484087997" />
-    <state width="1514" height="206" key="GridCell.Tab.0.left" timestamp="1604484087997">
+    <state width="1514" height="206" key="GridCell.Tab.0.center/0.0.1536.826@0.0.1536.826" timestamp="1604487120817" />
+    <state width="1514" height="206" key="GridCell.Tab.0.left" timestamp="1604487120817">
       <screen x="0" y="0" width="1536" height="826" />
     </state>
-    <state width="1514" height="206" key="GridCell.Tab.0.left/0.0.1536.826@0.0.1536.826" timestamp="1604484087997" />
-    <state width="1514" height="206" key="GridCell.Tab.0.right" timestamp="1604484087997">
+    <state width="1514" height="206" key="GridCell.Tab.0.left/0.0.1536.826@0.0.1536.826" timestamp="1604487120817" />
+    <state width="1514" height="206" key="GridCell.Tab.0.right" timestamp="1604487120817">
       <screen x="0" y="0" width="1536" height="826" />
     </state>
-    <state width="1514" height="206" key="GridCell.Tab.0.right/0.0.1536.826@0.0.1536.826" timestamp="1604484087997" />
+    <state width="1514" height="206" key="GridCell.Tab.0.right/0.0.1536.826@0.0.1536.826" timestamp="1604487120817" />
     <state x="277" y="44" key="SettingsEditor" timestamp="1604446538492">
       <screen x="0" y="0" width="1536" height="826" />
     </state>
