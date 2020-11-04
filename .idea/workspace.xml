@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac54e09c-a7fe-40b6-9410-3bf89a41f970" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/epam courses.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/homework1/tasks/sub_arrays.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.isort.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/.isort.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homework1/tasks/task03.py" beforeDir="false" afterPath="$PROJECT_DIR$/homework1/tasks/max_and_min.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework1/tasks/task04.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,11 +21,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/homework1/tasks/max_and_min.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/homework1/tasks/sub_arrays.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
-    <configuration name="max_and_min" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="sub_arrays" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="epam courses" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -42,7 +37,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/homework1/tasks/max_and_min.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/homework1/tasks/sub_arrays.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -76,30 +71,30 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="67" width="1089" height="739" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604475847847">
+    <state x="223" y="15" width="1089" height="811" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604477528291">
       <screen x="0" y="0" width="1536" height="826" />
     </state>
-    <state x="223" y="67" width="1089" height="739" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.826@0.0.1536.826" timestamp="1604475847847" />
-    <state x="820" y="185" key="FileChooserDialogImpl" timestamp="1604475845815">
+    <state x="223" y="15" width="1089" height="811" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.826@0.0.1536.826" timestamp="1604477528291" />
+    <state x="820" y="185" key="FileChooserDialogImpl" timestamp="1604477525396">
       <screen x="0" y="0" width="1536" height="826" />
     </state>
-    <state x="820" y="185" key="FileChooserDialogImpl/0.0.1536.826@0.0.1536.826" timestamp="1604475845815" />
-    <state width="1514" height="206" key="GridCell.Tab.0.bottom" timestamp="1604476494823">
+    <state x="820" y="185" key="FileChooserDialogImpl/0.0.1536.826@0.0.1536.826" timestamp="1604477525396" />
+    <state width="1514" height="206" key="GridCell.Tab.0.bottom" timestamp="1604482654839">
       <screen x="0" y="0" width="1536" height="826" />
     </state>
-    <state width="1514" height="206" key="GridCell.Tab.0.bottom/0.0.1536.826@0.0.1536.826" timestamp="1604476494823" />
-    <state width="1514" height="206" key="GridCell.Tab.0.center" timestamp="1604476494823">
+    <state width="1514" height="206" key="GridCell.Tab.0.bottom/0.0.1536.826@0.0.1536.826" timestamp="1604482654839" />
+    <state width="1514" height="206" key="GridCell.Tab.0.center" timestamp="1604482654839">
       <screen x="0" y="0" width="1536" height="826" />
     </state>
-    <state width="1514" height="206" key="GridCell.Tab.0.center/0.0.1536.826@0.0.1536.826" timestamp="1604476494823" />
-    <state width="1514" height="206" key="GridCell.Tab.0.left" timestamp="1604476494823">
+    <state width="1514" height="206" key="GridCell.Tab.0.center/0.0.1536.826@0.0.1536.826" timestamp="1604482654839" />
+    <state width="1514" height="206" key="GridCell.Tab.0.left" timestamp="1604482654839">
       <screen x="0" y="0" width="1536" height="826" />
     </state>
-    <state width="1514" height="206" key="GridCell.Tab.0.left/0.0.1536.826@0.0.1536.826" timestamp="1604476494823" />
-    <state width="1514" height="206" key="GridCell.Tab.0.right" timestamp="1604476494823">
+    <state width="1514" height="206" key="GridCell.Tab.0.left/0.0.1536.826@0.0.1536.826" timestamp="1604482654839" />
+    <state width="1514" height="206" key="GridCell.Tab.0.right" timestamp="1604482654839">
       <screen x="0" y="0" width="1536" height="826" />
     </state>
-    <state width="1514" height="206" key="GridCell.Tab.0.right/0.0.1536.826@0.0.1536.826" timestamp="1604476494823" />
+    <state width="1514" height="206" key="GridCell.Tab.0.right/0.0.1536.826@0.0.1536.826" timestamp="1604482654839" />
     <state x="277" y="44" key="SettingsEditor" timestamp="1604446538492">
       <screen x="0" y="0" width="1536" height="826" />
     </state>
