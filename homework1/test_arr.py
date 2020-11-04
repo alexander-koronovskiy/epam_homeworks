@@ -1,5 +1,5 @@
 import pytest
-from homework1.tasks.sub_arrays import find_maximal_sub_array_sum
+from tasks.sub_arrays import find_maximal_sub_array_sum
 
 
 @pytest.mark.parametrize(
