@@ -7,7 +7,7 @@ from task03.max_and_min import find_maximum_and_minimum
 @pytest.mark.parametrize(
     ["file", "expected_result"],
     [
-        ("tasks/numbers.txt", (0, 9)),
+        ("task03/numbers.txt", (0, 9)),
     ],
 )
 def test_max_sub_sum(file: str, expected_result: Tuple[int, int]):
