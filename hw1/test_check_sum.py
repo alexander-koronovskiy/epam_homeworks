@@ -1,5 +1,5 @@
 import pytest
-from tasks.check_sum import check_sum_of_four
+from task04.check_sum import check_sum_of_four
 
 
 @pytest.mark.parametrize(

@@ -1,7 +1,7 @@
 from typing import Tuple
 
 import pytest
-from tasks.max_and_min import find_maximum_and_minimum
+from task03.max_and_min import find_maximum_and_minimum
 
 
 @pytest.mark.parametrize(
