@@ -8,6 +8,7 @@ from task03.max_and_min import find_maximum_and_minimum
     ["file", "expected_result"],
     [
         ("numbers.txt", (-13, 99)),
+        ("numbers00.txt", (1, 5)),
     ],
 )
 def test_max_sub_sum(file: str, expected_result: Tuple[int, int]):
