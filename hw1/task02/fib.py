@@ -8,13 +8,8 @@ from collections import Sequence
 
 
 def check_fibonacci(data: Sequence[int]) -> bool:
-    return not (False in [check_number(i) for i in data][1:])
-
-
-def check_number(n: int) -> bool:
-    a, b = 0, 1
-    for _ in range(n):
-        a, b = b, a + b
-        if n == b or n == a:
-            return True
-    return False
+    stat = False
+    if data[:2] == [0, 1]:
+        for i in range(len(data)):
+            stat = data[i] == data[i - 1] + data[i - 2]
+    return stat

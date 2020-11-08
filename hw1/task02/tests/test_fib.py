@@ -5,8 +5,10 @@ from task02.fib import check_fibonacci
 @pytest.mark.parametrize(
     ["value", "expected_result"],
     [
-        ([0, 1, 1, 2, 3, 5, 8, 13, 21], True),
-        ([7, 8, 9, 10, 12], False),
+        ([0, 1], True),
+        ([0, 2], False),
+        ([0, 1, 1, 2, 3, 5, 8], True),
+        ([0, 1, 1, 3, 2, 5, 8], False),
     ],
 )
 def test_check_fibonacci(value: [int], expected_result: bool):
