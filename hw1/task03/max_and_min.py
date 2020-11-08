@@ -25,6 +25,3 @@ def find_maximum_and_minimum(file_name: str) -> Tuple[int, int]:
             max_seq = max(seq) if max_seq < max(seq) else max_seq
 
     return min_seq, max_seq
-
-
-print(find_maximum_and_minimum("numbers.txt"))
