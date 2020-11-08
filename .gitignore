@@ -6,9 +6,6 @@ __pycache__/
 # C extensions
 *.so
 
-.isort.cfg
-.pre-commit-config.yaml
-
 # Distribution / packaging
 .Python
 build/
