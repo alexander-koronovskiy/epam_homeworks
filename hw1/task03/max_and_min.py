@@ -12,12 +12,19 @@ from typing import Tuple
 
 
 def find_maximum_and_minimum(file_name: str) -> Tuple[int, int]:
-    words = ""
+
     with open(file_name) as f:
-        while True:
-            word = f.read(1)
-            words += word
-            if not word:
-                break
-    nums = list(map(int, words.split()))
-    return min(nums), max(nums)
+        seq = list(map(int, f.readline().split()))
+        min_seq, max_seq = min(seq), max(seq)
+
+    with open(file_name) as f:
+        for line in f.readlines():
+            seq = list(map(int, line.split()))
+
+            min_seq = min(seq) if min_seq > min(seq) else min_seq
+            max_seq = max(seq) if max_seq < max(seq) else max_seq
+
+    return min_seq, max_seq
+
+
+print(find_maximum_and_minimum("numbers.txt"))
