@@ -10,7 +10,9 @@ from typing import List
 
 
 def find_maximal_sub_array_sum(nums: List[int], k: int) -> int:
-    s = []
+    max_sum = nums[0]
     for i in range(len(nums)):
-        s.append(sum(nums[i : i + k]))
-    return max(s)
+        for j in range(k):
+            if max_sum < sum(nums[i : i + k - j]):
+                max_sum = sum(nums[i : i + k - j])
+    return max_sum
