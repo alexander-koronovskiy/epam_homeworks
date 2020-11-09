@@ -12,7 +12,7 @@ from task05.alph import custom_range
 )
 def test_custom_range(alphabet, start, end, pos, expected_result):
     """
-    test for major_and_minor.py
+    test for alph.py
     """
     actual_result = custom_range(alphabet, start, end, pos)
     assert actual_result == expected_result
