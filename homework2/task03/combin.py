@@ -16,11 +16,7 @@ from typing import Any, List
 
 
 def combinations(*args: List[Any]) -> List[List]:
-    comb1 = itertools.combinations(args[0], 1)
-    comb2 = itertools.combinations(args[1], 1)
-    combs = itertools.product(comb1, comb2)
-    result = [list(itertools.chain.from_iterable(x)) for x in combs]
+    result = []
+    for combination in itertools.product(*args):
+        result.append(list(combination))
     return result
-
-
-print(combinations([1, 2], [3, 4]))
