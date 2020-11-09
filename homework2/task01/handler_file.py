@@ -59,7 +59,5 @@ def count_punctuation_chars(file_path: str) -> int:
     return punctuation_count
 
 
-f1 = get_longest_diverse_words("data00.txt")
-f2 = get_rarest_char("data00.txt")
-f3 = count_punctuation_chars("data00.txt")
-print(f1, f2, f3)
+f1 = get_rarest_char("data00.txt")
+print(f1)
