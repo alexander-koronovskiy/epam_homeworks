@@ -1,7 +1,7 @@
 from typing import Any, List
 
 import pytest
-from task03.combin import combinations
+from task03.combination import combinations
 
 
 @pytest.mark.parametrize(
@@ -10,9 +10,9 @@ from task03.combin import combinations
         (([1, 2], [3, 4]), [[1, 3], [1, 4], [2, 3], [2, 4]]),
     ],
 )
-def test_major_and_minor(inp: List[Any], expected_result: List[List]):
+def test_combination(inp: List[Any], expected_result: List[List]):
     """
-    test for major_and_minor.py
+    test for combination.py
     """
-    actual_result = combinations(inp)
+    actual_result = combinations(*inp)
     assert actual_result == expected_result

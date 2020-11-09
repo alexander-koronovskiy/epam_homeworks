@@ -10,8 +10,13 @@ val_1 = cache_func(*some)
 val_2 = cache_func(*some)
 assert val_1 is val_2
 """
-from collections import Callable
+from functools import lru_cache
+from typing import Callable
 
 
 def cache(func: Callable) -> Callable:
-    return func
+    @lru_cache
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+
+    return wrapper

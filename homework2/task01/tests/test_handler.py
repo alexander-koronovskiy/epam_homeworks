@@ -5,7 +5,7 @@ from task01.handler_file import count_punctuation_chars, get_rarest_char
 @pytest.mark.parametrize(
     ["file", "expected_result"],
     [
-        ("data00.txt", "x"),
+        ("task01/data00.txt", "x"),
     ],
 )
 def test_rarest_char(file: str, expected_result: str):
@@ -18,7 +18,7 @@ def test_rarest_char(file: str, expected_result: str):
 
 @pytest.mark.parametrize(
     ["file", "expected_result"],
-    [("data00.txt", 7), ("data.txt", 8280)],
+    [("task01/data00.txt", 7), ("task01/data.txt", 8280)],
 )
 def test_punctuation_chars(file: str, expected_result: int):
     """
@@ -30,7 +30,7 @@ def test_punctuation_chars(file: str, expected_result: int):
 
 @pytest.mark.parametrize(
     ["file", "expected_result"],
-    [("data.txt", 2)],
+    [("task01/data.txt", 2)],
 )
 def count_non_ascii_chars(file: str, expected_result: int):
     """
