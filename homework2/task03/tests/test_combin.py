@@ -12,7 +12,7 @@ from task03.combin import combinations
 )
 def test_major_and_minor(inp: List[Any], expected_result: List[List]):
     """
-    test for major_and_minor.py get_rarest_char method
+    test for major_and_minor.py
     """
     actual_result = combinations(inp)
     assert actual_result == expected_result

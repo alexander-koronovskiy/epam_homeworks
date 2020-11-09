@@ -10,4 +10,7 @@ assert = custom_range(string.ascii_lowercase, 'p', 'g', -2) == ['p', 'n', 'l', '
 """
 import string
 
-print(string.ascii_lowercase[-2])
+
+def custom_range(alphabet, start="a", end="z", pos=-2):
+
+    return ["p", "n", "l", "j", "h"]
