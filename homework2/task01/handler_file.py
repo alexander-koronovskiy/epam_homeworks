@@ -6,6 +6,7 @@ Given a file containing text. Complete using only default collections:
     4) Count every non ascii char
     5) Find most common non ascii char for document
 """
+from collections import Counter
 from typing import List
 
 
@@ -59,5 +60,22 @@ def count_punctuation_chars(file_path: str) -> int:
     return punctuation_count
 
 
-f1 = get_rarest_char("data00.txt")
-print(f1)
+isascii = lambda s: len(s) == len(s.encode())
+
+
+def count_non_ascii_chars(file_path: str) -> int:
+    s = get_file_content(file_path)
+    non_ascii_count = 0
+    for ch in s:
+        if not isascii(ch):
+            non_ascii_count += 1
+    return non_ascii_count
+
+
+def get_most_common_non_ascii_char(file_path: str) -> str:
+    s = get_file_content(file_path)
+    non_asciis = ""
+    for ch in s:
+        if not isascii(ch):
+            non_asciis += ch
+    return Counter(non_asciis).most_common()

@@ -26,3 +26,15 @@ def test_punctuation_chars(file: str, expected_result: int):
     """
     actual_result = count_punctuation_chars(file)
     assert actual_result == expected_result
+
+
+@pytest.mark.parametrize(
+    ["file", "expected_result"],
+    [("data.txt", 2)],
+)
+def count_non_ascii_chars(file: str, expected_result: int):
+    """
+    test for handler_file.py count_non_ascii_chars method
+    """
+    actual_result = count_non_ascii_chars(file)
+    assert actual_result == expected_result
