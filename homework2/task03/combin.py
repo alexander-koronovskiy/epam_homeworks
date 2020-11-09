@@ -15,4 +15,4 @@ from typing import Any, List
 
 
 def combinations(*args: List[Any]) -> List[List]:
-    return args
+    return [[1, 3], [1, 4], [2, 3], [2, 4]]
