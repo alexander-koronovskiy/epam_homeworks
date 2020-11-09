@@ -18,9 +18,7 @@ def test_rarest_char(file: str, expected_result: str):
 
 @pytest.mark.parametrize(
     ["file", "expected_result"],
-    [
-        ("data00.txt", 7),
-    ],
+    [("data00.txt", 7), ("data.txt", 8280)],
 )
 def test_punctuation_chars(file: str, expected_result: int):
     """
