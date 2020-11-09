@@ -53,13 +53,13 @@ def count_punctuation_chars(file_path: str) -> int:
     punctuation_count = 0
 
     for ch in s:
-        if not (ch.isdigit() or ch.isalpha()):
+        if not (ch.isdigit() or ch.isalpha() or ch.isspace()):
             punctuation_count += 1
 
     return punctuation_count
 
 
-f1 = get_longest_diverse_words("data.txt")
-f2 = get_rarest_char("data.txt")
-f3 = count_punctuation_chars("data.txt")
-print(f3)
+f1 = get_longest_diverse_words("data00.txt")
+f2 = get_rarest_char("data00.txt")
+f3 = count_punctuation_chars("data00.txt")
+print(f1, f2, f3)
