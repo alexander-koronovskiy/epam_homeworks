@@ -1,13 +1,13 @@
-from task01.wrap import cache
+from task01.wrap import *
 
 
-def test_combination():
+@Memoized(cache_size=2)
+def f():
+    return input("? ")
+
+
+def test_cache():
     """
-    test for wrap.py
+    for testing this i used 'pytest -s'
     """
-
-    # cache(times=2)
-    def f():
-        return "? "
-
-    assert f() == "? "
+    assert f()

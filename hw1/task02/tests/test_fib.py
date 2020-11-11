@@ -7,11 +7,10 @@ from task02.fib import check_fibonacci
     [
         ([0], False),
         ([0, 1], True),
-        ([0, 2], False),
-        ([5, 3], False),
-        ([0, 2, 1], False),
+        ([0, 1, 1], True),
+        ([2, 3, 5], False),
         ([0, 1, 1, 2, 3, 5, 8], True),
-        ([0, 1, 1, 3, 2, 5, 8], False),
+        ([0, 1, 1, 2, 3, 8], False),
     ],
 )
 def test_check_fibonacci(value: [int], expected_result: bool):

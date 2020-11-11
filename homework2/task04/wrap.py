@@ -20,3 +20,16 @@ def cache(func: Callable) -> Callable:
         return func(*args, **kwargs)
 
     return wrapper
+
+
+def memorize(func):
+    cache = dict()
+
+    def memorized_func(*args):
+        if args in cache:
+            return cache[args]
+        result = func(*args)
+        cache[args] = result
+        return result
+
+    return memorized_func
