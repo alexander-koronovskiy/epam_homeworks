@@ -4,5 +4,5 @@ url = "https://python-scripts.com/file-exists"
 
 
 def test_parser():
-    print(get_html(url))
+    print(get_head(url))
     assert True

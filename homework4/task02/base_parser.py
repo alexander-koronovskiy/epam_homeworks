@@ -11,9 +11,16 @@
   - функция имеет положительные и отрицательные тесты
 """
 import requests
+from bs4 import BeautifulSoup
 
-
-def get_html(url):
-    r = requests.get(url)
-    r.encoding = "utf8"
-    return r.text
+url = "https://python-scripts.com/file-exists"
+count = 0
+require_symbol = "i"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "lxml")
+for quotes in soup.find_all("p"):
+    # print(quotes.text)
+    for symbol in quotes.text:
+        if symbol == require_symbol:
+            count += 1
+print(count)
