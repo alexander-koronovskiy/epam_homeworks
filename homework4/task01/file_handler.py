@@ -1,9 +1,9 @@
 """
-Задача готова, если:
-  - функция создана +
-  - функция правильно отформатирована +
-  - функция имеет положительные и отрицательные тесты +
-  - все временные файлы удаляются после пробного запуска
+Definition of done:
+ - function is created
+ - function is properly formatted
+ - function has positive and negative tests
+ - all temporary files are removed after test run
 """
 import os
 
