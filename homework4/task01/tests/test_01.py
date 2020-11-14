@@ -12,7 +12,10 @@ def test_exist() -> bool:
 
 
 def test_magic_number():
+    """
+    value test for file_handler.py
+    """
     assert read_magic_number("correct.txt")
-    assert not read_magic_number("incorrect.txt")
-    assert not read_magic_number("empty.txt")
-    assert not os.path.isfile("not_exist.txt")
+    assert read_magic_number("incorrect.txt") == ValueError
+    assert read_magic_number("empty.txt") == ValueError
+    assert read_magic_number("not_exist.txt") == ValueError
