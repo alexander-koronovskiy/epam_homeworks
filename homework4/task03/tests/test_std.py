@@ -1,7 +1,10 @@
 from task03.std_handler import *
 
+invalid_s = "error: file not found"
+valid_s = "OK"
 
-def test_errprint(capsys):  # or use "capfd" for fd-level
-    errprint("world\n")
+
+def test_errprint(capsys):
+    errprint(invalid_s)
     captured = capsys.readouterr()
-    assert captured.err == "world\n"
+    assert invalid_s == captured.err

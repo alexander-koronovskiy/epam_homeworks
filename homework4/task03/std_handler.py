@@ -1,5 +1,8 @@
 import sys
 
 
-def errprint(*args, **kwargs):
-    print(*args, file=sys.stderr, end="", **kwargs)
+def errprint(s):
+    if s[:5] == "error":
+        print(s, file=sys.stderr, end="")
+    else:
+        print(s, file=sys.stdout, end="")
