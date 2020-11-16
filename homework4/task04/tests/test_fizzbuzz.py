@@ -25,9 +25,16 @@ default_res = [
 ]
 
 
-# mb add optional test for getting result by n
 def test_fb_default():
     """
-    FizzBuzz sequence check with default n
+    How to use
+
+    - Install Python 3.8 (https://www.python.org/downloads/)
+    - Install pytest `pip install pytest`
+    - Clone the repository <path your repository>
+    - Checkout branch <your branch>
+    - Open terminal
+    - Write 'pytest' in console log
+    - Test done with default number n = 20
     """
     assert fb(default_n) == default_res
