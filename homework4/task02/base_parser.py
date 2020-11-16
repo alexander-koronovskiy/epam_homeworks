@@ -16,11 +16,9 @@ from bs4 import BeautifulSoup
 
 def count_dots_on_i(url: str) -> int:
     count = 0
-    require_symbol = "i"
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
-    for quotes in soup.find_all("p"):
-        for symbol in quotes.text:
-            if symbol == require_symbol:
-                count += 1
+    for i in str(soup.find_all("html")):
+        if i == "i":
+            count += 1
     return count

@@ -5,5 +5,5 @@ def test_parser():
     """
     comparison of function results with measured value
     """
-    url = "https://python-scripts.com/file-exists"
-    assert count_dots_on_i(url) == 30
+    url = "https://example.com/"
+    assert count_dots_on_i(url) == 59
