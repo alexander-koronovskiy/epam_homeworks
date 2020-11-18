@@ -6,9 +6,8 @@ Given a file containing text. Complete using only default collections:
     4) Count every non ascii char
     5) Find most common non ascii char for document
 """
-from collections import Counter
+import unicodedata
 from typing import Generator, List
-
 
 """
 прочитать слово до первого пробела или символа пунктуации
@@ -18,18 +17,30 @@ from typing import Generator, List
 """
 
 
+forbidden = (".", "?", "!", ":", ";", "-", "—", " ", "[", "]")
+
+
 def word_reader(file_path: str) -> Generator:
     with open(file_path, encoding="utf-8") as f:
-        word = ""
         while True:
-            ch = f.read(1).lower()
-            # not char - end of word, end of read
-            if not ch:
+
+            # buffer
+            buf = f.read(10240)
+            if not buf:
                 break
-            # char is punctuation - записать слово и знак
-            # char is ' ' - конец слова
-            yield ch
+
+            # make sure we end on a space (word boundary)
+            while not str.isspace(buf[-1]):
+                ch = f.read(1)
+                if not ch:
+                    break
+                buf += ch
+
+            words = buf.split()
+
+            for word in words:
+                yield word
 
 
-for i in word_reader("simple_data.txt"):
-    print(i, end="")
+for word in word_reader("simple_data.txt"):
+    print(word)
