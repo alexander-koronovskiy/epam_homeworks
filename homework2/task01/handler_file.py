@@ -65,7 +65,5 @@ def get_most_common_non_ascii_char(file_path: str, encoding: str) -> str:
 
 
 isascii = lambda s: len(s) == len(s.encode())
-
-
-for word in word_stream(file="simple_data.txt", encoding="utf-8"):
+for word in word_stream(file="data.txt", encoding="unicode-escape"):
     print(word)
