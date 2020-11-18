@@ -24,20 +24,32 @@ def word_reader(file_path: str) -> Generator:
     with open(file_path, encoding="utf-8") as f:
         while True:
 
-            # buffer
+            # buffer creation
             buf = f.read(10240)
             if not buf:
                 break
 
-            # make sure we end on a space (word boundary)
+            # word boundary check
             while not str.isspace(buf[-1]):
                 ch = f.read(1)
                 if not ch:
                     break
                 buf += ch
 
-            words = buf.split()
+            record = ""
+            words = []
 
+            # work with buffer
+            for symbol in buf:
+
+                # recording word
+                record += symbol
+
+                if symbol.isspace():
+                    words.append(record)
+                    record = ""
+
+            # word stream
             for word in words:
                 yield word
 
