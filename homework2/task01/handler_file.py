@@ -9,24 +9,13 @@ Given a file containing text. Complete using only default collections:
 import unicodedata
 from typing import Generator, List
 
-# unicodedata.category().startswith('P')
-"""
-прочитать слово до первого пробела или символа пунктуации
-    обработать слово
-    и уже реализовать эти операции отдельно.
-    В идеале код питона должен читаться как документ с требованиями.
-"""
 
-
-forbidden = (".", "?", "!", ":", ";", "-", "—", " ", "[", "]")
-
-
-def word_reader(file_path: str) -> Generator:
-    with open(file_path, encoding="utf-8") as f:
+def word_stream(file: str, encoding: str) -> Generator:
+    with open(file, encoding=encoding) as f:
         while True:
 
             # buffer creation
-            buf = f.read(10240)
+            buf = f.read(65536)
             if not buf:
                 break
 
@@ -41,11 +30,10 @@ def word_reader(file_path: str) -> Generator:
             record = ""
             words = []
 
+            # regard that divided by punctuation word is a some different words
             for symbol in buf:
                 if unicodedata.category(symbol).startswith("P"):
-                    if symbol == "-":
-                        pass
-                    words.append(record)
+                    words.extend(record.split())
                     words.append(symbol)
                     record = ""
                 else:
@@ -55,5 +43,29 @@ def word_reader(file_path: str) -> Generator:
                 yield word
 
 
-for word in word_reader("simple_data.txt"):
+def get_longest_diverse_words(file_path: str, encoding: str) -> List[str]:
+    for word in word_stream(file_path, encoding):
+        pass
+
+
+def get_rarest_char(file_path: str, encoding: str) -> str:
+    pass
+
+
+def count_punctuation_chars(file_path: str, encoding: str) -> int:
+    pass
+
+
+def count_non_ascii_chars(file_path: str, encoding: str) -> int:
+    pass
+
+
+def get_most_common_non_ascii_char(file_path: str, encoding: str) -> str:
+    pass
+
+
+isascii = lambda s: len(s) == len(s.encode())
+
+
+for word in word_stream(file="simple_data.txt", encoding="utf-8"):
     print(word)
