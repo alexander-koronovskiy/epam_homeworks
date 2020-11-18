@@ -9,6 +9,7 @@ Given a file containing text. Complete using only default collections:
 import unicodedata
 from typing import Generator, List
 
+# unicodedata.category().startswith('P')
 """
 прочитать слово до первого пробела или символа пунктуации
     обработать слово
@@ -36,20 +37,20 @@ def word_reader(file_path: str) -> Generator:
                     break
                 buf += ch
 
+            # work with buffer content
             record = ""
             words = []
 
-            # work with buffer
             for symbol in buf:
-
-                # recording word
-                record += symbol
-
-                if symbol.isspace():
+                if unicodedata.category(symbol).startswith("P"):
+                    if symbol == "-":
+                        pass
                     words.append(record)
+                    words.append(symbol)
                     record = ""
+                else:
+                    record += symbol
 
-            # word stream
             for word in words:
                 yield word
 
