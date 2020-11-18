@@ -7,75 +7,29 @@ Given a file containing text. Complete using only default collections:
     5) Find most common non ascii char for document
 """
 from collections import Counter
-from typing import List
+from typing import Generator, List
 
 
-def get_file_content(file_path: str) -> str:
-    s = ""
+"""
+прочитать слово до первого пробела или символа пунктуации
+    обработать слово
+    и уже реализовать эти операции отдельно.
+    В идеале код питона должен читаться как документ с требованиями.
+"""
 
-    with open(file_path) as f:
+
+def word_reader(file_path: str) -> Generator:
+    with open(file_path, encoding="utf-8") as f:
+        word = ""
         while True:
             ch = f.read(1).lower()
-            s += ch
+            # not char - end of word, end of read
             if not ch:
                 break
-
-    return s
-
-
-def get_longest_diverse_words(file_path: str) -> List[str]:
-    unique_map = {}
-    s = get_file_content(file_path)
-    words = s.split()
-
-    for word in set(words):
-        unique_map[word] = len(set(word))
-
-    max_unique = sorted(unique_map.items(), key=lambda item: item[1], reverse=True)
-    return [i[0] for i in max_unique[:10]]
+            # char is punctuation - записать слово и знак
+            # char is ' ' - конец слова
+            yield ch
 
 
-def get_rarest_char(file_path: str) -> str:
-    s = get_file_content(file_path)
-    ch_map = {}
-
-    for ch in s:
-        if ch in ch_map:
-            ch_map[ch] += 1
-        else:
-            ch_map[ch] = 1
-
-    min_unique = sorted(ch_map.items(), key=lambda item: item[1])
-    return min_unique[0][0]
-
-
-def count_punctuation_chars(file_path: str) -> int:
-    s = get_file_content(file_path)
-    punctuation_count = 0
-
-    for ch in s:
-        if not (ch.isdigit() or ch.isalpha() or ch.isspace()):
-            punctuation_count += 1
-
-    return punctuation_count
-
-
-isascii = lambda s: len(s) == len(s.encode())
-
-
-def count_non_ascii_chars(file_path: str) -> int:
-    s = get_file_content(file_path)
-    non_ascii_count = 0
-    for ch in s:
-        if not isascii(ch):
-            non_ascii_count += 1
-    return non_ascii_count
-
-
-def get_most_common_non_ascii_char(file_path: str) -> str:
-    s = get_file_content(file_path)
-    non_asciis = ""
-    for ch in s:
-        if not isascii(ch):
-            non_asciis += ch
-    return Counter(non_asciis).most_common()
+for i in word_reader("simple_data.txt"):
+    print(i, end="")
