@@ -1,49 +1,14 @@
-"""
-Given a file containing text. Complete using only default collections:
-    1) Find 10 longest words consisting from largest amount of unique symbols
-    2) Find rarest symbol for document
-    3) Count every punctuation char
-    4) Count every non ascii char
-    5) Find most common non ascii char for document
-"""
-import unicodedata
-from typing import Generator, List
+from collections import Counter
+from typing import List
 
-
-def word_stream(file: str, encoding: str) -> Generator:
-    with open(file, encoding=encoding) as f:
-        while True:
-
-            # buffer creation
-            buf = f.read(65536).lower()
-            if not buf:
-                break
-
-            # word boundary check
-            while not str.isspace(buf[-1]):
-                ch = f.read(1)
-                if not ch:
-                    break
-                buf += ch
-
-            # work with buffer content
-            record = ""
-            words = []
-
-            # regard that divided by punctuation word is a some different words
-            for symbol in buf:
-                if unicodedata.category(symbol).startswith("P"):
-                    words.extend(record.split())
-                    words.append(symbol)
-                    record = ""
-                else:
-                    record += symbol
-
-            for word in words:
-                yield word
+from task01.reader import *
 
 
 def get_longest_diverse_words(file_path: str, encoding: str) -> List[str]:
+
+    """
+    Find 10 longest words consisting from largest amount of unique symbols
+    """
 
     # init searching longest diverse words
     most_unique_words = []
@@ -65,9 +30,12 @@ def get_longest_diverse_words(file_path: str, encoding: str) -> List[str]:
 
 def get_rarest_char(file_path, encoding) -> str:
 
-    # it saves symbol and occurrence
-    ch_map = {}
+    """
+    Find rarest symbol for document
+    """
 
+    # storage for all symbols
+    ch_map = {}
     for word in word_stream(file_path, encoding):
         for ch in word:
             if ch in ch_map:
@@ -75,28 +43,45 @@ def get_rarest_char(file_path, encoding) -> str:
             else:
                 ch_map[ch] = 1
 
+    # sort char map, and find rarest element
     min_unique = sorted(ch_map.items(), key=lambda item: item[1])
+
     return min_unique[0][0]
 
 
 def count_punctuation_chars(file_path: str, encoding: str) -> int:
+    """
+    Count every punctuation char
+    """
     count = 0
     for word in word_stream(file_path, encoding):
-        if len(word) == 1:
-            count += 1
+        for symbol in word:
+            if unicodedata.category(symbol).startswith("P"):
+                count += 1
     return count
 
 
 def count_non_ascii_chars(file_path: str, encoding: str) -> int:
-    pass
+    """
+    Count every non ascii char
+    """
+    non_ascii_count = 0
+    for word in word_stream(file_path, encoding):
+        if not isascii(word):
+            non_ascii_count += 1
+    return non_ascii_count
 
 
 def get_most_common_non_ascii_char(file_path: str, encoding: str) -> str:
-    pass
+    """
+    Get most common non ascii char
+    """
+    non_asciis = ""
+    for word in word_stream(file_path, encoding):
+        for ch in word:
+            if not isascii(ch):
+                non_asciis += ch
+    return Counter(non_asciis).most_common()[0][0]
 
 
 isascii = lambda s: len(s) == len(s.encode())
-# for word in word_stream(file="data.txt", encoding="unicode-escape"): print(word)  # 0
-# print(get_longest_diverse_words("simple_data.txt", encoding="utf-8"))  # 1
-# print(get_rarest_char("simple_data.txt", encoding="utf-8"))  # 2
-print(count_punctuation_chars("simple_data.txt", encoding="utf-8"))

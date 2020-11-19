@@ -1,6 +1,12 @@
+Исправления
+
 задача 1
 ========
-1. Постарайся никогда не чи-
+
+1. Чтобы не читать весь файл
+
+
+Постарайся никогда не чи-
 тать весь файл сразу в па-
 мять, особенно когда это касается обработки файлов с последовательностями данных.
 тут вполне мог быть файл на несколько гигабайт. Исправь пожалуйста код чтобы работал по мере чтения из файла.
@@ -47,101 +53,3 @@
 =============
 Функция должна работать не только на символах, а на любых последовательностях с уникальными элементами.
 Например, custom_range([1,2,3,4,5], 2, 4) должно выдать [3, 4]
-
-def get_longest_diverse_words(file_path: str) -> List[str]:
-    unique_map = {}
-    s = get_file_content(file_path)
-    words = s.split()
-
-    for word in set(words):
-        unique_map[word] = len(set(word))
-
-    max_unique = sorted(unique_map.items(), key=lambda item: item[1], reverse=True)
-    return [i[0] for i in max_unique[:10]]
-
-
-def get_rarest_char(file_path: str) -> str:
-    s = get_file_content(file_path)
-    ch_map = {}
-
-    for ch in s:
-        if ch in ch_map:
-            ch_map[ch] += 1
-        else:
-            ch_map[ch] = 1
-
-    min_unique = sorted(ch_map.items(), key=lambda item: item[1])
-    return min_unique[0][0]
-
-
-def count_punctuation_chars(file_path: str) -> int:
-    s = get_file_content(file_path)
-    punctuation_count = 0
-
-    for ch in s:
-        if not (ch.isdigit() or ch.isalpha() or ch.isspace()):
-            punctuation_count += 1
-
-    return punctuation_count
-
-
-isascii = lambda s: len(s) == len(s.encode())
-
-
-def count_non_ascii_chars(file_path: str) -> int:
-    s = get_file_content(file_path)
-    non_ascii_count = 0
-    for ch in s:
-        if not isascii(ch):
-            non_ascii_count += 1
-    return non_ascii_count
-
-
-def get_most_common_non_ascii_char(file_path: str) -> str:
-    s = get_file_content(file_path)
-    non_asciis = ""
-    for ch in s:
-        if not isascii(ch):
-            non_asciis += ch
-    return Counter(non_asciis).most_common()
-
-import pytest
-from task01.handler_file import count_punctuation_chars, get_rarest_char
-
-
-@pytest.mark.parametrize(
-    ["file", "expected_result"],
-    [
-        ("task01/data00.txt", "x"),
-    ],
-)
-def test_rarest_char(file: str, expected_result: str):
-    """
-    test for handler_file.py get_rarest_char method
-    """
-    actual_result = get_rarest_char(file)
-    assert actual_result == expected_result
-
-
-@pytest.mark.parametrize(
-    ["file", "expected_result"],
-    [("task01/data00.txt", 7), ("task01/data.txt", 8280)],
-)
-def test_punctuation_chars(file: str, expected_result: int):
-    """
-    test for handler_file.py get_rarest_char method
-    """
-    actual_result = count_punctuation_chars(file)
-    assert actual_result == expected_result
-
-
-@pytest.mark.parametrize(
-    ["file", "expected_result"],
-    [("task01/data.txt", 2)],
-)
-def count_non_ascii_chars(file: str, expected_result: int):
-    """
-    test for handler_file.py count_non_ascii_chars method
-    """
-    actual_result = count_non_ascii_chars(file)
-    assert actual_result == expected_result
