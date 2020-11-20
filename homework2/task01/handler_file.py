@@ -67,8 +67,9 @@ def count_non_ascii_chars(file_path: str, encoding: str) -> int:
     """
     non_ascii_count = 0
     for word in word_stream(file_path, encoding):
-        if not isascii(word):
-            non_ascii_count += 1
+        for ch in word:
+            if not ch.isascii():
+                non_ascii_count += 1
     return non_ascii_count
 
 
@@ -79,7 +80,7 @@ def get_most_common_non_ascii_char(file_path: str, encoding: str) -> str:
     non_asciis = ""
     for word in word_stream(file_path, encoding):
         for ch in word:
-            if not isascii(ch):
+            if not ch.isascii():
                 non_asciis += ch
     return Counter(non_asciis).most_common()[0][0]
 
