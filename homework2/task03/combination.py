@@ -15,22 +15,24 @@ import itertools
 from typing import Any, List
 
 
-def combinations(*args: List[Any]) -> List[List]:
-    result = []
-    for a in args:
-        result = [x + [y] for x in result for y in a]
-    return list(itertools.product(*args))
-    return result
+def combs(xs, i=0):
+    if i == len(xs):
+        yield ()
+        return
+    for c in combs(xs, i + 1):
+        yield c
+        yield (xs[i],) + c
 
 
-def sum1(lst):
+def expand(lst):
     total = []
     for element in lst:
         if type(element) == type([]):
-            total.extend(sum1(element) + element)
+            total.extend(expand(element))
         else:
             total.append(element)
     return total
 
 
-print("Сумма элементов равна:", sum1([[1, 2], [3, 4]]))
+for i in combs(expand([[1, 2], [3, 4]])):
+    print(i)
