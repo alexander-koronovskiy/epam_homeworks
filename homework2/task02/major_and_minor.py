@@ -15,6 +15,67 @@ from collections import Counter
 from typing import List, Tuple
 
 
+# first realisation
 def major_and_minor_elem(inp: List) -> Tuple[int, int]:
-    most_com = Counter(inp).most_common()
-    return most_com[0][0], most_com[-1][0]
+
+    # using map in this code make O(n) complicity
+    el_map = {}
+    for el in inp:
+        if el in el_map:
+            el_map[el] += 1
+        else:
+            el_map[el] = 1
+
+    el_sorted = sorted(el_map.items(), key=lambda item: item[1], reverse=True)
+    return el_sorted[0][0], el_sorted[-1][0]
+
+
+def quick_sort(l):
+    if not l:
+        return []
+    else:
+        return (
+            quick_sort([x for x in l if x < l[0]])
+            + [x for x in l if x == l[0]]
+            + quick_sort([x for x in l if x > l[0]])
+        )
+
+
+# another realisation (earlier)
+def major_and_minor_elem_0(inp: List) -> Tuple[int, int]:
+
+    # init counter
+    loc_storage = []
+    result = []
+    count = 1
+
+    # check input data
+    if inp:
+
+        # O(n log n) sorted  + added memory
+        for i in quick_sort(inp):
+
+            # first occurrence calculation skip
+            if not loc_storage:
+                loc_storage.append(i)
+                continue
+
+            # occurrence calculation
+            if loc_storage[-1] == i:
+                count += 1
+            else:
+                result.append((loc_storage[-1], count))
+                count = 1
+            loc_storage.append(i)
+
+        # last occurrence calculation
+        result.append((loc_storage[-1], count))
+
+    else:
+        result = ()
+
+    if result:
+        el_sorted = sorted(result, key=lambda item: item[1], reverse=True)
+        return el_sorted[0][0], el_sorted[-1][0]
+    else:
+        return result
