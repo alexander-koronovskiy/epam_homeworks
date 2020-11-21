@@ -11,11 +11,14 @@ assert combinations([1, 2], [3, 4]) == [
     [2, 4],
 ]
 """
-import itertools
-from typing import Any, List
+from typing import Any, List, Tuple
 
 
-def combs(xs, i=0):
+def combs(xs, i=0) -> Tuple[Any]:
+    """
+    xs - elements sequence
+    :returns all element combination
+    """
     if i == len(xs):
         yield ()
         return
@@ -24,7 +27,10 @@ def combs(xs, i=0):
         yield (xs[i],) + c
 
 
-def expand(lst):
+def expand(lst: List[List]) -> List[int]:
+    """
+    expand list
+    """
     total = []
     for element in lst:
         if type(element) == type([]):
@@ -34,18 +40,22 @@ def expand(lst):
     return total
 
 
-lst = [[1, 2], [3, 4]]
-tmp = lst.copy()
-result = []
+def combinations(*args) -> List[Any]:
+    """
+    function that takes K lists as arguments and returns all possible
+    lists of K items where the first element is from the first list,
+    the second is from the second and so one.
+    """
+    lst = [i for i in args]
+    tmp = lst.copy()
+    result = []
 
-current = lst[0]
+    for current in lst:
+        for elem in lst:
+            if elem == current:
+                tmp.remove(current)
 
-for elem in lst:
-    if elem == current:
-        tmp.remove(current)
-
-        for i in current:
-            for j in expand(tmp):
-                result.append([i, j])
-
-print(result)
+                for i in current:
+                    for j in expand(tmp):
+                        result.append([i, j])
+    return result
