@@ -23,4 +23,15 @@ def combinations(*args: List[Any]) -> List[List]:
     return result
 
 
+def sum1(lst):
+    total = 0
+    for element in lst:
+        if type(element) == type([]):
+            total = total + sum1(element)
+        else:
+            total = total + element
+    return total
+
+
+print("Сумма элементов равна:", sum1([[1, 2], [3, 4]]))
 print(combinations([1, 2], [3, 4]))
