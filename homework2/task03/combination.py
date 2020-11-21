@@ -34,5 +34,18 @@ def expand(lst):
     return total
 
 
-for i in combs(expand([[1, 2], [3, 4]])):
-    print(i)
+lst = [[1, 2], [3, 4]]
+tmp = lst.copy()
+result = []
+
+current = lst[0]
+
+for elem in lst:
+    if elem == current:
+        tmp.remove(current)
+
+        for i in current:
+            for j in expand(tmp):
+                result.append([i, j])
+
+print(result)
