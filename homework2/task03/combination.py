@@ -17,6 +17,10 @@ from typing import Any, List
 
 def combinations(*args: List[Any]) -> List[List]:
     result = []
-    for combination in itertools.product(*args):
-        result.append(list(combination))
+    for a in args:
+        result = [x + [y] for x in result for y in a]
+    return list(itertools.product(*args))
     return result
+
+
+print(combinations([1, 2], [3, 4]))
