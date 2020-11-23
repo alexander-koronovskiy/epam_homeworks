@@ -15,7 +15,9 @@ from typing import List
 def custom_range(
     alphabet: str, start: str = "a", end: str = "z", pos: int = -2
 ) -> List[str]:
+
     count, pos_start, pos_end = 0, 1, 26
+
     for i in alphabet:
         if i == start:
             pos_start = count
