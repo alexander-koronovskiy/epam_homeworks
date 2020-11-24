@@ -5,8 +5,6 @@ Homework) Наследование в этой задаче использова
 """
 from datetime import *
 
-from task01.time_to_data import *
-
 
 class Homework:
     """
@@ -23,14 +21,17 @@ class Homework:
     возвращает boolean
     """
 
+    # Format example: 2019-05-26 16:44:30.688762
+    date_select = datetime.strptime("2020-11-23 19:15:32", "%Y-%m-%d %H:%M:%S")
+
     def __init__(self, text: str, deadline: int):
         """Constructor"""
         self.text = text
-        self.deadline = deadline
-        self.created = datetime.now()
+        self.created = self.date_select  # datetime.now()
+        self.deadline = self.created + timedelta(days=deadline)
 
     def is_active(self):
-        return datetime.now() - self.created < timedelta(days=self.deadline)
+        return datetime.now() < self.deadline
 
 
 class Student:
