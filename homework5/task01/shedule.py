@@ -2,13 +2,10 @@
 Необходимо создать 3 класса и взаимосвязь между ними (Student, Teacher,
 Homework) Наследование в этой задаче использовать не нужно.
 Для работы с временем использовать модуль datetime
-
-# 1 преобразовать строку в дату
-# 2 homework-log, сохранение д.з.
-
-
 """
-import datetime
+from datetime import *
+
+from task01.time_to_data import *
 
 
 class Homework:
@@ -26,14 +23,14 @@ class Homework:
     возвращает boolean
     """
 
-    def __init__(self, text: str, deadline: str):
+    def __init__(self, text: str, deadline: int):
         """Constructor"""
         self.text = text
         self.deadline = deadline
-        self.created = datetime.datetime.now()
+        self.created = datetime.now()
 
     def is_active(self):
-        return datetime.datetime.now()
+        return datetime.now() - self.created < timedelta(days=self.deadline)
 
 
 class Student:
