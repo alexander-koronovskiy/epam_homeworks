@@ -2,31 +2,38 @@
 Необходимо создать 3 класса и взаимосвязь между ними (Student, Teacher,
 Homework) Наследование в этой задаче использовать не нужно.
 Для работы с временем использовать модуль datetime
+
+# 1 преобразовать строку в дату
+# 2 homework-log, сохранение д.з.
+
+
 """
+import datetime
 
 
 class Homework:
     """
     1. Homework принимает на вход 2 атрибута:
-    text - текст задания,  и количество дней на это задание
+    text - текст задания, и, deadline - количество дней на это задание
 
     Атрибуты:
     text - текст задания
     deadline - хранит объект datetime.timedelta с количеством дней на выполнение
-
     created - c точной датой и временем создания
 
     Методы:
-    is_active - проверяет не истело ли время на выполнение задания,
+    is_active - проверяет не истекло ли время на выполнение задания,
     возвращает boolean
     """
 
-    def __init__(self, text, deadline):
+    def __init__(self, text: str, deadline: str):
         """Constructor"""
         self.text = text
-        self.doors = deadline
+        self.deadline = deadline
+        self.created = datetime.datetime.now()
 
-    created = ""
+    def is_active(self):
+        return datetime.datetime.now()
 
 
 class Student:
@@ -44,6 +51,9 @@ class Student:
         """Constructor"""
         self.last_name = last_name
         self.first_name = first_name
+
+    def do_homework(self, hw: Homework):
+        return hw.is_active()
 
 
 class Teacher:
@@ -63,3 +73,6 @@ class Teacher:
         """Constructor"""
         self.last_name = last_name
         self.first_name = first_name
+
+    def create_homework(self, text, data):
+        return Homework.__init__(text, data)
