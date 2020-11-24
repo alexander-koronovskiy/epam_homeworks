@@ -75,4 +75,4 @@ class Teacher:
         self.first_name = first_name
 
     def create_homework(self, text, data):
-        return Homework.__init__(text, data)
+        return Homework(text, data)
