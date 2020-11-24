@@ -20,15 +20,16 @@ def test_names(teacher=teacher, student=student):
 
 def test_hw_parameters():
     """
-    test for correct field broadcasting in Homework Class
+    test for correct methods work in Homework Class
     """
     assert expired_homework.text == "Learn functions"
-    assert str(expired_homework.created) == "2020-11-23 19:15:32"
-
-    assert str(expired_homework.deadline) == "2020-11-23 19:15:32"
-    assert str(oop_homework.deadline) == "2020-11-28 19:15:32"
+    assert expired_homework.deadline < datetime.now()
+    assert oop_homework.deadline > datetime.now()
 
 
 def test_student_hw():
+    """
+    test for correct methods work in Class 'Student'
+    """
     assert student.do_homework(oop_homework) == ""
     assert student.do_homework(expired_homework) == "You are late"

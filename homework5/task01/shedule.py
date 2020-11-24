@@ -22,12 +22,12 @@ class Homework:
     """
 
     # Format example: 2019-05-26 16:44:30.688762
-    date_select = datetime.strptime("2020-11-23 19:15:32", "%Y-%m-%d %H:%M:%S")
+    date_select = datetime.now() - timedelta(days=3)
 
     def __init__(self, text: str, deadline: int):
         """Constructor"""
         self.text = text
-        self.created = self.date_select  # datetime.now()
+        self.created = self.date_select
         self.deadline = self.created + timedelta(days=deadline)
 
     def is_active(self):
@@ -51,10 +51,7 @@ class Student:
         self.first_name = first_name
 
     def do_homework(self, hw: Homework):
-        if not hw.is_active():
-            return "You are late"
-        else:
-            return ""
+        return "You are late" if not hw.is_active() else ""
 
 
 class Teacher:
