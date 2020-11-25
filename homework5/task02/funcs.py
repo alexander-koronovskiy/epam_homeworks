@@ -5,32 +5,28 @@
 
 print_result изменять нельзя, за исключением добавления вашего
 декоратора на строку отведенную под него - замените комментарий
+
 До применения вашего декоратор будет вызываться AttributeError при custom_sum.__original_func
 Это корректное поведение
 После применения там должна быть исходная функция
-Ожидаемый результат:
-print(custom_sum.__doc__)  # 'This function can sum any objects which have __add___'
-print(custom_sum.__name__)  # 'custom_sum'
-print(custom_sum.__original_func)  # <function custom_sum at <some_id>>
 """
-
-
 import functools
 
 
 def print_result(func):
+
     # Place for new decorator
-    def decorator(func):
-        def wrapper(*args, **kwargs):
-            """Function-wrapper which print result of an original function"""
-            result = func(*args, **kwargs)
-            print(result)
-            return result
+    def wrapper(*args, **kwargs):
+        """Function-wrapper which print result of an original function"""
+        result = func(*args, **kwargs)
+        print(result)
+        return result
 
-        wrapper.__name__ = func.__name__
-        return wrapper
+    setattr(wrapper, "__name__", func.__name__)
+    setattr(wrapper, "__doc__", func.__doc__)
+    setattr(wrapper, "__original_func", func)
 
-    return decorator
+    return wrapper
 
 
 @print_result
