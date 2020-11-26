@@ -9,7 +9,7 @@ assert = custom_range(string.ascii_lowercase, 'g', 'p') == ['g', 'h', 'i', 'j', 
 assert = custom_range(string.ascii_lowercase, 'p', 'g', -2) == ['p', 'n', 'l', 'j', 'h']
 """
 import string
-from typing import List
+from typing import Any, List
 
 
 def custom_range(
@@ -28,4 +28,25 @@ def custom_range(
     return [i for i in alphabet[pos_start:pos_end:pos]]
 
 
-print(custom_range(string.ascii_lowercase, "p", "g"))
+def custom_range_2(
+    seq: Any, key_word_first: Any = None, key_word_last: Any = None, step: Any = None
+):
+
+    first_el, last_el = None, None
+
+    for i, el in enumerate(seq):
+        if el == key_word_first:
+            first_el = i
+        if el == key_word_last:
+            last_el = i
+
+    if last_el is None:
+        return [i for i in seq[0:first_el:step]]
+
+    return [i for i in seq[first_el:last_el:step]]
+
+
+print(custom_range_2(string.ascii_lowercase))
+print(custom_range_2(string.ascii_lowercase, "g"))
+print(custom_range_2(string.ascii_lowercase, "g", "p"))
+print(custom_range(string.ascii_lowercase, "p", "g", -2))
