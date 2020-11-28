@@ -1,9 +1,12 @@
+from task01.method_adds import countcalls
+
+
 def instances_counter(cls):
     """Some code"""
     return cls
 
 
-@instances_counter
+@countcalls
 class User:
     pass
 
