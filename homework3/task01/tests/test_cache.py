@@ -10,3 +10,5 @@ def test_memoize():
     foo(2, 4)
     foo("hi", 3)
     assert foo == {(2, 4): 8, ("hi", 3): "hihihi"}
+    foo("g", 4)
+    assert foo == {("g", 4): "gggg"}

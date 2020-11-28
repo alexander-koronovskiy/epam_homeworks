@@ -11,4 +11,11 @@ class Memoize(dict):
         return self[args]
 
     def __missing__(self, key):
+        if len(self) == 2:
+            self.clear()
         self[key] = self.func(*key)
+
+
+@Memoize
+def foo(a, b):
+    return a * b
