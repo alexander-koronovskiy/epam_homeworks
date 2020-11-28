@@ -6,13 +6,11 @@ reset_instances_counter - сбрасывает счетчик экземпляр
 
 Имя декоратора и методов неизменно
 """
-reps = 0
 
 
 def get_created_instances(self):
-    global reps
-    print("success")
-    reps += 1
+    self.__class__.c += 1
+    print(self.__class__.c)
 
 
 class InsertMethod:
@@ -31,6 +29,8 @@ class InsertMethod:
 class User(object):
     def __init__(self):
         pass
+
+    c = 0
 
     def action(self):
         self.action()
