@@ -8,26 +8,26 @@ reset_instances_counter - сбрасывает счетчик экземпляр
 """
 
 
-class SomeClass:
+def benchmark(func):
+    import time
 
-    # constructor
-    def __init__(self, number):
-        self.number = number
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        return_value = func(*args, **kwargs)
+        end = time.time()
+        print("[*] Время выполнения: {} секунд.".format(end - start))
+        return return_value
 
-    # bound_method
-    @classmethod
-    def create_new_object(cls, *args, **kwargs):
-        return cls(*args, **kwargs)
-
-    @staticmethod
-    def just_function():
-        return "I cannot change class instance"
-
-    def print_me(self):
-        return self.number
+    return wrapper
 
 
-foo = SomeClass
-bar = SomeClass(10)
+@benchmark
+def fetch_webpage(url):
+    import requests
 
-print(foo.create_new_object(5).print_me(), bar.print_me())
+    webpage = requests.get(url)
+    return webpage.text
+
+
+webpage = fetch_webpage("https://google.com")
+# print(webpage)
