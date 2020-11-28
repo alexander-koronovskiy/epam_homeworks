@@ -8,18 +8,26 @@ reset_instances_counter - сбрасывает счетчик экземпляр
 """
 
 
-def decorator(func):
-    def wrapper(*args, **kwargs):
-        print("hello !")
-        func(*args, **kwargs)
+class SomeClass:
 
-    return wrapper
+    # constructor
+    def __init__(self, number):
+        self.number = number
+
+    # bound_method
+    @classmethod
+    def create_new_object(cls, *args, **kwargs):
+        return cls(*args, **kwargs)
+
+    @staticmethod
+    def just_function():
+        return "I cannot change class instance"
+
+    def print_me(self):
+        return self.number
 
 
-class A:
-    @decorator
-    def smth_method(a="???"):
-        return "this is one of method of " + a
+foo = SomeClass
+bar = SomeClass(10)
 
-
-print(A.smth_method())
+print(foo.create_new_object(5).print_me(), bar.print_me())
