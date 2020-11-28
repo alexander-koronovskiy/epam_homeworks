@@ -8,6 +8,10 @@ reset_instances_counter - сбрасывает счетчик экземпляр
 """
 
 
+def get_created_instances(self):
+    print("Success")
+
+
 class InsertMethod:
     def __init__(self, methodToInsert):
         self.methodToInsert = methodToInsert
@@ -20,14 +24,10 @@ class InsertMethod:
         return wrapper
 
 
-def get_created_instances(self):
-    print("Success")
-
-
 @InsertMethod(get_created_instances)
 class User(object):
     def __init__(self):
         pass
 
     def action(self):
-        self.get_created_instances()
+        self.action()
