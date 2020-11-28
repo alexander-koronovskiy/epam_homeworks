@@ -8,7 +8,7 @@ reset_instances_counter - сбросить счетчик экземпляров
 Ниже пример использования
 """
 
-from task01.method_adds import Something
+from task01.method_adds import User
 
-a = Something()
+a = User()
 a.action()
