@@ -1,13 +1,12 @@
-from task01.wrap import *
+from task01.wrap import Memoize
 
 
-@Memoized(cache_size=2)
-def f():
-    return input("? ")
+@Memoize
+def foo(a, b):
+    return a * b
 
 
-def test_cache():
-    """
-    for testing this i used 'pytest -s'
-    """
-    assert f()
+def test_memoize():
+    foo(2, 4)
+    foo("hi", 3)
+    assert foo == {(2, 4): 8, ("hi", 3): "hihihi"}
