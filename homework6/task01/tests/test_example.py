@@ -5,8 +5,17 @@ user.get_created_instances()  # 3
 user.reset_instances_counter()  # 3
 """
 
-from task01.method_adds import User
+from task01.method_adds import get_created_instances, reset_instance_counter
 
-User().get_created_instances()
-user, a = User(), User()
-user.get_created_instances()
+
+@get_created_instances
+@reset_instance_counter
+class User:
+    pass
+
+
+user, _, _ = User(), User(), User()
+
+
+def test_decor():
+    assert User.calls == 3
