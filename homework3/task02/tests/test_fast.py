@@ -4,31 +4,12 @@ get_created_instances - возвращает количество созданы
 reset_instances_counter - сбрасывает счетчик экземпляров и возвращает значение до сброса
 Имя декоратора и методов неизменно
 """
-import requests
-
-
-def benchmark(func):
-    import time
-
-    def wrapper(*args, **kwargs):
-
-        start = time.time()
-
-        return_value = func(*args, **kwargs)
-
-        end = time.time()
-        print("[*] Время выполнения: {} секунд.".format(end - start))
-
-        return return_value
-
-    return wrapper
+from task02.fast_calc import benchmark, slow_calculate
 
 
 @benchmark
-def fetch_webpage(url):
-    webpage = requests.get(url)
-    return webpage.text
+def total_sum(n):
+    return sum([slow_calculate(i) for i in range(n)])
 
 
-webpage = fetch_webpage("https://google.com")
-# print(webpage)
+print(total_sum(5))  # распаралеллить вычисления
