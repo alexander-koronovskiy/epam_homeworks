@@ -18,28 +18,21 @@ f()
 """
 
 
-def memoize_func(f):
+def decorator(f):
     memo = dict()
 
-    def func(*args):
-
+    def wrapper(*args):
+        memo[args] = f(*args)
         print(f"Run with args={args}, memo={memo}")
-
-        if args not in memo:
-            memo[args] = f(*args)
         return memo[args]
 
-    return func
+    return wrapper
 
 
-@memoize_func
+@decorator
 def func(a, b):
     return a ** b
 
 
 func(3, 5)
 func(3, 4)
-func(3, 2)
-func(3, 6)
-func(3, 4)
-func(3, 5)
