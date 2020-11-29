@@ -18,19 +18,28 @@ f()
 """
 
 
-class Memoize(dict):
-    """
-    That's a memoizing function that works on functions, methods, or classes,
-    and exposes the cache publicly.
-    """
+def memoize_func(f):
+    memo = dict()
 
-    def __init__(self, func):
-        self.func = func
+    def func(*args):
 
-    def __call__(self, *args):
-        return self[args]
+        print(f"Run with args={args}, memo={memo}")
 
-    def __missing__(self, key):
-        if len(self) == 2:
-            self.clear()
-        self[key] = self.func(*key)
+        if args not in memo:
+            memo[args] = f(*args)
+        return memo[args]
+
+    return func
+
+
+@memoize_func
+def func(a, b):
+    return a ** b
+
+
+func(3, 5)
+func(3, 4)
+func(3, 2)
+func(3, 6)
+func(3, 4)
+func(3, 5)
