@@ -8,10 +8,40 @@ import random
 import struct
 import time
 from multiprocessing import Pool, cpu_count
+from threading import Thread
 from timeit import default_timer as timer
 
 
-def fast_calc(times=50):
+class MyThread(Thread):
+    """
+    A threading example
+    """
+
+    summ = 0
+
+    def __init__(self, name):
+        """Thread initialization"""
+        Thread.__init__(self)
+        self.name = name
+
+    def run(self):
+        """thread start"""
+        self.summ += slow_calculate(self.name)
+
+
+def create_threads(n: int):
+    """
+    threads group creation
+    """
+    for i in range(n):
+        my_thread = MyThread(i)
+        my_thread.start()
+
+
+def pm_calc(times=50):
+    """
+    New calculation function
+    """
     start = timer()
     print(f"starting computations on {cpu_count()} cores")
     values = range(times)
