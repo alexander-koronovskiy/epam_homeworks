@@ -16,23 +16,19 @@ f()
 ? 2
 '2'
 """
+from collections import OrderedDict
 
 
-def decorator(f):
-    memo = dict()
+def cache(times=10):
+    def decorator(f):
+        memo = OrderedDict()
 
-    def wrapper(*args):
-        memo[args] = f(*args)
-        print(f"Run with args={args}, memo={memo}")
-        return memo[args]
+        def wrapper(*args):
+            if len(memo) == times:
+                memo.popitem(last=False)
+            memo[args] = f(*args)
+            return {k: v for k, v in zip(memo.keys(), memo.values())}
 
-    return wrapper
+        return wrapper
 
-
-@decorator
-def func(a, b):
-    return a ** b
-
-
-func(3, 5)
-func(3, 4)
+    return decorator
