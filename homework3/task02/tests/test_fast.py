@@ -1,9 +1,9 @@
-from task02.fast_calc import benchmark, slow_calculate
+from task02.fast_calc import fast_calc
 
 
-@benchmark
-def total_sum(n):
-    return sum([slow_calculate(i) for i in range(n)])
+def test_new():
+    assert fast_calc(10) < 5
 
 
-print(total_sum(3))
+if __name__ == "__main__":
+    test_new()
