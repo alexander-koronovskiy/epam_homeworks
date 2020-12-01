@@ -8,16 +8,28 @@ class Filter:
     functions that return True if object in list conforms to some criteria
     """
 
-    def __init__(self, functions):
+    def __init__(self, *functions):
         self.functions = functions
 
     def apply(self, data):
         return [item for item in data if all(i(item) for i in self.functions)]
 
 
+def foo(x):
+    return x ** 2 == 36
+
+
+def foo_first(a):
+    return a % 2 == 0
+
+
+Filter(foo(5))
+sample_usage = Filter(foo_first, foo)
+print(sample_usage.apply(data=range(10)))
+
 # example of usage:
-# positive_even = Filter(lamba a: a % 2 == 0, lambda a: a > 0, lambda a: isinstance(int, a)))
-# positive_even.apply(range(100)) should return only even numbers from 0 to 99
+positive_even = Filter(lambda a: a % 2 == 0, lambda a: a > 0)
+positive_even.apply(range(100))  # should return only even numbers from 0 to 99
 
 
 def make_filter(**keywords):
