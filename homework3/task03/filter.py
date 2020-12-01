@@ -38,8 +38,9 @@ def make_filter(**keywords):
             return value[key] == value
 
         filter_funcs.append(keyword_filter_func)
-    return filter_funcs  # Filter
+    return Filter(keyword_filter_func)  # Filter
 
 
 # should return only second entry from the list
-print(make_filter(name="polly", type="bird"))  # apply
+filter_data = make_filter(name="polly", type="bird").apply(sample_data)
+print(filter_data)

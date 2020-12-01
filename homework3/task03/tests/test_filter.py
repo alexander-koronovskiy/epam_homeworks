@@ -1,4 +1,4 @@
-from task03.filter import *
+from task03.filter import Filter
 
 
 def foo(x):
@@ -15,8 +15,7 @@ def test_my():
     sample_usage.apply(data=range(10)) == [6]
 
 
-# example of usage:
-# should return only even numbers from 0 to 99
+# example of usage: should return only even numbers from 0 to 99
 def test_origin():
     positive_even = Filter(
         lambda a: a % 2 == 0, lambda a: a > 0, lambda a: isinstance(a, int)
