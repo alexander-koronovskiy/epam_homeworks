@@ -26,6 +26,18 @@ sample_data = [
 ]
 
 
+example_2 = [
+    {
+        "name": "Bill",
+        "last_name": "Gilbert",
+        "occupation": "was here",
+        "type": "person",
+    },
+    {"is_dead": True, "kind": "parrot", "type": "bird", "name": "polly"},
+    {"is_dead": True, "kind": "parrot", "type": "bird", "name": "billy"},
+]
+
+
 def make_filter(**keywords):
     """
     Generate filter object for specified keywords
@@ -34,13 +46,8 @@ def make_filter(**keywords):
 
     for key, value in keywords.items():
 
-        def keyword_filter_func(value):
-            return value[key] == value
+        def keyword_filter_func(dict_val, key=key, value=value):
+            return key in dict_val and dict_val[key] == value
 
         filter_funcs.append(keyword_filter_func)
-    return Filter(keyword_filter_func)  # Filter
-
-
-# should return only second entry from the list
-filter_data = make_filter(name="polly", type="bird").apply(sample_data)
-print(filter_data)
+    return Filter(*filter_funcs)  # Filter

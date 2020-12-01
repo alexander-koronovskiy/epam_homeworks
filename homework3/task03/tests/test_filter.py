@@ -1,4 +1,4 @@
-from task03.filter import Filter
+from task03.filter import Filter, example_2, make_filter, sample_data
 
 
 def foo(x):
@@ -21,3 +21,8 @@ def test_origin():
         lambda a: a % 2 == 0, lambda a: a > 0, lambda a: isinstance(a, int)
     )
     assert positive_even.apply(range(100)) == [i for i in range(1, 100) if i % 2 == 0]
+
+
+def test_data_origin():
+    assert make_filter(name="polly", type="bird").apply(sample_data) == [sample_data[1]]
+    assert len(make_filter(name="billy", type="bird").apply(example_2)) == 1
