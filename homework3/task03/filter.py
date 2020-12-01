@@ -27,10 +27,6 @@ Filter(foo(5))
 sample_usage = Filter(foo_first, foo)
 print(sample_usage.apply(data=range(10)))
 
-# example of usage:
-positive_even = Filter(lambda a: a % 2 == 0, lambda a: a > 0)
-positive_even.apply(range(100))  # should return only even numbers from 0 to 99
-
 
 def make_filter(**keywords):
     """
