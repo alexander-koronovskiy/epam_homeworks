@@ -17,7 +17,7 @@ def test_pm_solution():
     """
     test new solution in Pool.map for fast_calc.py
     """
-    assert pm_calc(50) < 10
+    assert pm_calc(5) < 3
 
 
 if __name__ == "__main__":
