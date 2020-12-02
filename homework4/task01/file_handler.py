@@ -15,25 +15,22 @@ def read_magic_number(path: str) -> bool:
     :return: True or value_error
     """
     if not os.path.isfile(path):
-        raise ValueError
+        return ValueError
     else:
         with open(path) as f:
             wonder_sym = f.read(1)
             if not wonder_sym.isalnum():
-                raise ValueError
+                return ValueError
             wonder_sym = f.read(1)
             if wonder_sym.isspace():
                 return True
             if not wonder_sym == ".":
-                raise ValueError
+                return ValueError
             while True:
                 wonder_sym = f.read(1)
                 if wonder_sym.isspace():
                     break
                 if not wonder_sym.isalnum():
-                    raise ValueError
+                    return ValueError
 
     return True
-
-
-# read_magic_number('task_description.txt')

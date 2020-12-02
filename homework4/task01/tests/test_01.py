@@ -21,9 +21,9 @@ def test_magic_number(capsys):
     """
     value test for file_handler.py
     """
-    # assert read_magic_number(corr_f_name)
-    # assert read_magic_number(incorr_f_name) == ValueError
-    # assert read_magic_number(empty_f_name) == ValueError
+    assert read_magic_number(corr_f_name)
+    assert read_magic_number(incorr_f_name) == ValueError
+    assert read_magic_number(empty_f_name) == ValueError
     assert read_magic_number(not_exist_f_name) == ValueError
 
 
