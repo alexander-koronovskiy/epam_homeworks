@@ -15,22 +15,22 @@ def read_magic_number(path: str) -> bool:
     :return: True or value_error
     """
     if not os.path.isfile(path):
-        return ValueError
+        raise ValueError
     else:
         with open(path) as f:
             wonder_sym = f.read(1)
             if not wonder_sym.isalnum():
-                return ValueError
+                raise ValueError
             wonder_sym = f.read(1)
             if wonder_sym.isspace():
-                return True
+                raise True
             if not wonder_sym == ".":
-                return ValueError
+                raise ValueError
             while True:
                 wonder_sym = f.read(1)
                 if wonder_sym.isspace():
                     break
                 if not wonder_sym.isalnum():
-                    return ValueError
+                    raise ValueError
 
     return True
