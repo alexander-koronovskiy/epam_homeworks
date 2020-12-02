@@ -1,5 +1,29 @@
 from task01.file_handler import os, read_magic_number
 
+
+def test_magic_number():
+    """
+    value test for file_handler.py
+    """
+    # assert read_magic_number(corr_f_name)
+    try:
+        read_magic_number(incorr_f_name)
+        read_magic_number(empty_f_name)
+        read_magic_number(not_exist_f_name)
+    except:
+        ValueError
+
+
+def test_exist() -> bool:
+    """
+    temp files exist test for file_handler.py after it's work
+    """
+    assert not os.path.isfile(corr_f_name)
+    assert not os.path.isfile(incorr_f_name)
+    assert not os.path.isfile(empty_f_name)
+    assert not os.path.isfile(not_exist_f_name)
+
+
 # file creation, recording data
 corr_f_name = "data_correct.txt"
 incorr_f_name = "data_incorrect.txt"
@@ -16,31 +40,13 @@ incorr_f.close()
 
 empty_f = open(empty_f_name, "tw", encoding="utf-8").close()
 
-
-def test_magic_number():
-    """
-    value test for file_handler.py
-    """
-    # assert read_magic_number(corr_f_name)
-    try:
-        read_magic_number(incorr_f_name)
-        read_magic_number(empty_f_name)
-        read_magic_number(not_exist_f_name)
-    except:
-        ValueError
-
+# testing
+test_magic_number()
 
 # files remove
 os.remove(corr_f_name)
 os.remove(incorr_f_name)
 os.remove(empty_f_name)
 
-
-def test_exist() -> bool:
-    """
-    temp files exist test for file_handler.py after it's work
-    """
-    assert not os.path.isfile(corr_f_name)
-    assert not os.path.isfile(incorr_f_name)
-    assert not os.path.isfile(empty_f_name)
-    assert not os.path.isfile(not_exist_f_name)
+# testing remove
+test_exist()

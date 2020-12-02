@@ -10,15 +10,32 @@
   - функция правильно отформатирована
   - функция имеет положительные и отрицательные тесты
 """
+import time
+
 import requests
-from bs4 import BeautifulSoup
+
+
+def benchmark(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        return_value = func(*args, **kwargs)
+        end = time.time()
+        print("[*] Время выполнения: {} секунд.".format(end - start))
+        return return_value
+
+    return wrapper
+
+
+@benchmark
+def fetch_webpage(url):
+    webpage = requests.get(url)
+    return webpage.text
 
 
 def count_dots_on_i(url: str) -> int:
     count = 0
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, "lxml")
-    for i in str(soup.find_all("html")):
+    webpage = fetch_webpage(url)
+    for i in str(webpage):
         if i == "i":
             count += 1
     return count
