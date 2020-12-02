@@ -14,40 +14,26 @@ def read_magic_number(path: str) -> bool:
     :param path: file path
     :return: True or value_error
     """
-    stat = False
-    count = 1  # 'magic' number handler helper
-
-    # file existing
-    if os.path.isfile(path):
+    if not os.path.isfile(path):
+        raise ValueError
+    else:
         with open(path) as f:
-
-            # buffer creation
+            wonder_sym = f.read(1)
+            if not wonder_sym.isalnum():
+                raise ValueError
+            wonder_sym = f.read(1)
+            if wonder_sym.isspace():
+                return True
+            if not wonder_sym == ".":
+                raise ValueError
             while True:
-                count += 1
-                buf = f.read(16)
-                if not buf:
+                wonder_sym = f.read(1)
+                if wonder_sym.isspace():
                     break
+                if not wonder_sym.isalnum():
+                    raise ValueError
 
-                # 'magic' number handle
-                while "\n" not in buf:
-                    # first entrance handler
-                    if not count == 1:
-                        break
-                    else:
-                        # step-by-step handle, to avoid too multilevel nesting
-                        if not (buf[0] and buf[0].isalnum()):
-                            break
-                        if int(buf[0]) not in [1, 2]:
-                            break
-                        if not (buf[1] and buf[1] == "."):
-                            break
-                        if not buf[2:15].isalnum():
-                            break
-                    if not buf.isalnum():
-                        break
-                    else:
-                        stat = True
+    return True
 
-    if not stat:
-        stat = ValueError
-    return stat
+
+# read_magic_number('task_description.txt')
