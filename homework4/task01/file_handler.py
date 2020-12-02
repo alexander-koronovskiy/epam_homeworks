@@ -4,9 +4,6 @@ Definition of done:
  - function is properly formatted
  - function has positive and negative tests
  - all temporary files are removed after test run
-
-
-
 """
 import os
 
@@ -18,16 +15,39 @@ def read_magic_number(path: str) -> bool:
     :return: True or value_error
     """
     stat = False
-    count = 0
+    count = 1  # 'magic' number handler helper
+
+    # file existing
     if os.path.isfile(path):
         with open(path) as f:
-            for i in f.readline():
+
+            # buffer creation
+            while True:
                 count += 1
-                if i.isalnum():
-                    stat = int(i) in [1, 2]
-                if count > 2:
-                    stat = False
+                buf = f.read(16)
+                if not buf:
                     break
+
+                # 'magic' number handle
+                while "\n" not in buf:
+                    # first entrance handler
+                    if not count == 1:
+                        break
+                    else:
+                        # step-by-step handle, to avoid too multilevel nesting
+                        if not (buf[0] and buf[0].isalnum()):
+                            break
+                        if int(buf[0]) not in [1, 2]:
+                            break
+                        if not (buf[1] and buf[1] == "."):
+                            break
+                        if not buf[2:15].isalnum():
+                            break
+                    if not buf.isalnum():
+                        break
+                    else:
+                        stat = True
+
     if not stat:
         stat = ValueError
     return stat

@@ -7,11 +7,11 @@ empty_f_name = "empty_f.txt"
 not_exist_f_name = "not_exist_f.txt"
 
 corr_f = open(corr_f_name, "tw", encoding="utf-8")
-corr_f.write("2 \n56 88 \n12")
+corr_f.write("2.4789654646456456 \n56 88 \n12")
 corr_f.close()
 
 incorr_f = open(incorr_f_name, "tw", encoding="utf-8")
-incorr_f.write("13 \n77")
+incorr_f.write("1.3 \n77")
 incorr_f.close()
 
 empty_f = open(empty_f_name, "tw", encoding="utf-8").close()
