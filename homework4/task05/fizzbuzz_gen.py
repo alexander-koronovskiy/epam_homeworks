@@ -1,22 +1,19 @@
 from typing import Generator
 
 
-def fb(n: int) -> Generator:
+def fiz(n) -> Generator:
     """
     realization for FizzBuzz generator
 
     :param n: len of FizzBuzz generator set by user
     :return: FizzBuzz generator
     """
-    for i in range(1, n + 1):
-        if i % 3 == 0 and i % 5 == 0:
-            yield "FizzBuzz"
-            continue
-        elif i % 3 == 0:
-            yield "Fizz"
-            continue
+    for i in n:
+        if i % 15 == 0:
+            yield "fizbuz"
         elif i % 5 == 0:
-            yield "Buzz"
-            continue
+            yield "buz"
+        elif i % 3 == 0:
+            yield "fiz"
         else:
-            yield i
+            yield str(i)
