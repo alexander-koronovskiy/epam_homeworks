@@ -1,17 +1,19 @@
-from task02.base_parser import count_dots_on_i
+from unittest import mock
+
+from task02.base_parser import fetch_webpage
 
 
-def connection_mock(url):
-    return {"message": "OK"}
+def test_fetch_with_mock():
+    with mock.patch("requests.get") as mock_get:
 
+        username = "https:/www.example.com"
+        mock_get.return_value.ok = True
 
-def test_connection():
-    assert connection_mock("https://example.com/") == {"message": "OK"}
+        json_response = (
+            "<html><head>A song</head><body>House of the Rising Sun</body></html>"
+        )
+        mock_get.return_value.json.return_value = json_response
 
-
-def test_count():
-    """
-    comparison of function results with measured value
-    """
-    url = "https://example.com/"
-    assert count_dots_on_i(url) == 59
+        info = fetch_webpage(username)
+        assert info is not None
+        assert json_response == info
