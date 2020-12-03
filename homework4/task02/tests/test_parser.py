@@ -1,35 +1,26 @@
-from unittest import TestCase, mock
-
-import requests
 from mock import patch
 from task02.base_parser import count_dots_on_i, process_response
 
 
-def url_exists(url):
-    r = requests.get(url)
-    if r.status_code == 200:
-        return True
-
-    elif r.status_code == 404:
-        return False
-
-
-print(count_dots_on_i("https://example.com"))
+def test_response_content_is_not_empty():
+    with patch("requests.get") as mock_request:
+        url = "example.com"
+        mock_request.return_value.content = "iii content"
+        response = count_dots_on_i(url)
+        assert response == 3
 
 
-class FetchTests(TestCase):
-    def test_returns_true_if_url_found(self):
-        with patch("requests.get") as mock_request:
-            url = "http://google.com"
-            mock_request.return_value.status_code = 200
+def connection_mock(url):
+    return {"message": "OK"}
 
-            self.assertTrue(url_exists(url))
-            mock_request.assert_called_once_with(url)
 
-    def test_returns_false_if_url_not_found(self):
-        with patch("requests.get") as mock_request:
-            url = "http://google.com/nonexistingurl"
-            mock_request.return_value.status_code = 404
+def test_connection():
+    assert connection_mock("https://example.com/") == {"message": "OK"}
 
-            self.assertFalse(url_exists(url))
-            mock_request.assert_called_once_with(url)
+
+def test_count():
+    """
+    comparison of function results with measured value
+    """
+    url = "https://example.com/"
+    assert count_dots_on_i(url) == 59
