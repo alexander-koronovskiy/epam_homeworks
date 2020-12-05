@@ -9,21 +9,23 @@ from typing import Any
 
 
 def find_occurrences(tree: dict, element: Any) -> int:
-    ...
+    counts = 0
+    for i in Helper().expand(tree):
+        if i == element:
+            counts += 1
+    return counts
 
 
 class Helper:
-    def __init__(self, entry="Default"):
-        self.entry = entry
 
     content = []
 
     def expand(self, obj):
+
         if isinstance(obj, dict):
             for key, value in obj.items():
                 self.content.append(key)
                 self.expand(value)
-
         elif isinstance(obj, list) or isinstance(obj, tuple):
             for item in obj:
                 self.expand(item)

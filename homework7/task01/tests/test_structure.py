@@ -1,17 +1,16 @@
 """
 Test cases
 
-case 1. sought-for value in value // lector's example, modified with tuple - example tree
-case 2. empty example - empty tree
-case 3. sought-for value in key - find_me
+case 1. sought-for value in dict values - example_tree
+case 2. sought-for value in dict keys - find_me
+case 3. empty example - empty tree
 
 Check
- - в предварительной функции нет вложенных словарей
- - обработка пустого результата
- - поиск идет как по ключам, так и по значениям
-
+ - value assertion
+ - entry assertion for helper class
 """
-from task01.structure_finder import Helper
+
+from task01.structure_finder import find_occurrences
 
 # case 1
 example_tree = {
@@ -32,14 +31,31 @@ example_tree = {
 }
 
 # case 2
-empty_tree = {}
-
-# case 3
 find_me = {"Me": {"a": 2, "Me": "bop"}, "z": {"Me": 4}}
 
+# case 3
+empty_tree = {}
 
-counts = 0
-for i in Helper().expand(example_tree):
-    if i == "RED":
-        counts += 1
-print(counts)
+
+def test_value_1():
+    """
+    it's lector's example, modified by me,
+    i'm add in example a tuple, not change the the general value of 'RED'
+    Main idea it's sought-for in dict values
+    """
+    assert find_occurrences(example_tree, "RED") == 6
+
+
+def test_value_2():
+    """
+    My example
+    sought-for value in dict keys
+    """
+    assert find_occurrences(find_me, "Me") == 3
+
+
+def test_value_3():
+    """
+    My example of empty tree
+    """
+    assert not find_occurrences(empty_tree, "Default")
