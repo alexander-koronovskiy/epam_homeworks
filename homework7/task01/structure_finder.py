@@ -7,13 +7,20 @@ Tree can only contains basic structures like:
 """
 
 
-def recursive(obj):
-    if isinstance(obj, dict):
-        for key, value in obj.items():
-            print(key)
-            recursive(value)
-    elif isinstance(obj, list) or isinstance(obj, tuple):
-        for item in obj:
-            recursive(item)
-    else:
-        print(obj)
+class Counts:
+
+    count = []
+
+    def recursive(self, obj):
+        if isinstance(obj, dict):
+            for key, value in obj.items():
+                self.count.append(key)
+                self.recursive(value)
+
+        elif isinstance(obj, list) or isinstance(obj, tuple):
+            for item in obj:
+                self.recursive(item)
+        else:
+            self.count.append(obj)
+
+        return self.count
