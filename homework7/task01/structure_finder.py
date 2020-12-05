@@ -8,5 +8,9 @@ Tree can only contains basic structures like:
 from typing import Iterable, List
 
 
-def some_useful_func(lst):
-    return ["{}.{}".format(key, val) for key, vals in lst.items() for val in vals]
+def traverse(d):
+    for key, val in d.items():
+        if isinstance(val, dict):
+            yield from traverse(val)
+        else:
+            yield val

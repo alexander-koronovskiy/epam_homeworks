@@ -1,12 +1,19 @@
 """
 Test cases
 
-case 1.
+case 1. sought-for value in value (lector's example) - example tree
+case 2. empty example - empty tree
+case 3. sought-for value in key - find_me
 
+Check
+ - в предварительной функции нет вложенных словарей
+ - обработка пустого результата
+ - поиск идет как по ключам, так и по значениям
 
 """
-from task01.structure_finder import some_useful_func
+from task01.structure_finder import traverse
 
+# case 1
 example_tree = {
     "first": ["RED", "BLUE"],
     "second": {
@@ -24,30 +31,11 @@ example_tree = {
     "fourth": "RED",
 }
 
-empty_element = {}
-lst = {"A": ["1", "2", {"3": "RED"}], "B": ["2"], "C": ["1", "2"]}
-findMe = {"Me": {"a": 2, "Me": "bop"}, "z": {"Me": 4}}
+# case 2
+empty_tree = {}
+
+# case 3
+find_me = {"Me": {"a": 2, "Me": "bop"}, "z": {"Me": 4}}
 
 
-def keyHole(k2b, o):
-
-    if isinstance(o, dict):
-        for k, v in o.items():
-            if k == k2b and not hasattr(v, "__iter__"):
-                yield v
-            else:
-                for r in keyHole(k2b, v):
-                    yield r
-
-    """
-    elif hasattr(o, '__iter__'):
-    for r in [keyHole(k2b, i) for i in o]:
-        for item in r:
-            yield item
-    """
-
-    return
-
-
-print([x for x in keyHole("Me", findMe)])
-print(some_useful_func(lst))
+print([list(traverse(x)) for x in [example_tree]])
