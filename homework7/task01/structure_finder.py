@@ -5,17 +5,8 @@ of this element in the tree.
 Tree can only contains basic structures like:
     str, list, tuple, dict, set, int, bool
 """
-from typing import Any, List
+from typing import Iterable, List
 
 
-def expand(lst: List[Any]) -> List[int]:
-    """
-    expand list
-    """
-    total = []
-    for element in lst:
-        if type(element) == type([]):  # not element
-            total.extend(expand(element))
-        else:
-            total.append(element)
-    return total
+def some_useful_func(lst):
+    return ["{}.{}".format(key, val) for key, vals in lst.items() for val in vals]

@@ -1,10 +1,11 @@
 """
 Test cases
 
-1. structure with nested element - example tree
-2. empty structure - empty_element
+case 1.
+
+
 """
-from task01.structure_finder import expand
+from task01.structure_finder import some_useful_func
 
 example_tree = {
     "first": ["RED", "BLUE"],
@@ -24,7 +25,29 @@ example_tree = {
 }
 
 empty_element = {}
+lst = {"A": ["1", "2", {"3": "RED"}], "B": ["2"], "C": ["1", "2"]}
+findMe = {"Me": {"a": 2, "Me": "bop"}, "z": {"Me": 4}}
 
 
-seq = expand([example_tree])
-print(seq)
+def keyHole(k2b, o):
+
+    if isinstance(o, dict):
+        for k, v in o.items():
+            if k == k2b and not hasattr(v, "__iter__"):
+                yield v
+            else:
+                for r in keyHole(k2b, v):
+                    yield r
+
+    """
+    elif hasattr(o, '__iter__'):
+    for r in [keyHole(k2b, i) for i in o]:
+        for item in r:
+            yield item
+    """
+
+    return
+
+
+print([x for x in keyHole("Me", findMe)])
+print(some_useful_func(lst))
