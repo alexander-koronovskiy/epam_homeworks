@@ -1,7 +1,7 @@
 """
 Test cases
 
-case 1. sought-for value in value (lector's example) - example tree
+case 1. sought-for value in value (lector's example, modified with tuple) - example tree
 case 2. empty example - empty tree
 case 3. sought-for value in key - find_me
 
@@ -11,13 +11,13 @@ Check
  - поиск идет как по ключам, так и по значениям
 
 """
-from task01.structure_finder import traverse
+from task01.structure_finder import expand, traverse
 
 # case 1
 example_tree = {
     "first": ["RED", "BLUE"],
     "second": {
-        "simple_key": ["simple", "list", "of", "RED", "valued"],
+        "simple_key": ["simple", ("list", "of"), "RED", "valued"],
     },
     "third": {
         "abc": "BLUE",
@@ -37,5 +37,4 @@ empty_tree = {}
 # case 3
 find_me = {"Me": {"a": 2, "Me": "bop"}, "z": {"Me": 4}}
 
-
-print([list(traverse(x)) for x in [example_tree]])
+print([list(expand(traverse(x))) for x in [example_tree]])
