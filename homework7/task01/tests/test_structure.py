@@ -11,7 +11,7 @@ Check
  - поиск идет как по ключам, так и по значениям
 
 """
-from task01.structure_finder import Counts
+from task01.structure_finder import Helper
 
 # case 1
 example_tree = {
@@ -38,4 +38,8 @@ empty_tree = {}
 find_me = {"Me": {"a": 2, "Me": "bop"}, "z": {"Me": 4}}
 
 
-print(Counts().recursive(example_tree))
+counts = 0
+for i in Helper().expand(example_tree):
+    if i == "RED":
+        counts += 1
+print(counts)
