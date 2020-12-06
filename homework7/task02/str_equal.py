@@ -8,16 +8,33 @@ def backspace_compare(first: str, second: str):
 
 
 def process_backspaces(input_s: str):
+
+    # buffer_reader realize this, then handler
+
     back_space = "#"
-    # buffer
-    output = input_s.split("#", maxsplit=-1)
-    # найти первый
-    return output
+    buffer = ""
+
+    output = input_s.split(back_space, maxsplit=-1)
+
+    for i in output:
+
+        if i:
+            buffer += i
+            count = 0
+        else:
+            buffer = buffer[:-1]
+            if not count:
+                count += 1
+                buffer = buffer[:-1]
+
+    return output, buffer
 
 
-# examples
-# 1 тестовые варианты из задания
-# 2 aa###c и ###c
+# Test cases
+# abc = abc
+# ab#c = ac
+# ab#c# = a
 
 
-print(process_backspaces("aa###c"))
+print("case: abc", process_backspaces("abc"))
+print("case: ab#c is ac", process_backspaces("ab#c"))
