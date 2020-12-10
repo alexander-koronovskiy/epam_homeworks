@@ -2,24 +2,38 @@
 Класс KeyValueStorage - обработчик словаря, хранимого в файле
 
 - хранит все пары ключ-значение переданного файла +++
+- реализован доступ к атрибутам +++
+- реализован доступно в качестве коллекции +++
+
 - производит обработку численных значений
-- содержимое доступно в качестве коллекции
-- реализован доступ к атрибутам содержимого
-
 - производит valueError обработку
-- конфликт атрибутов ???
+- решен конфликт атрибутов
 """
-
-from task01.reader import content_reader
+from typing import Dict
 
 
 class KeyValueStorage:
     def __init__(self, storage):
         self.storage = storage
 
-    def all(self):
-        return content_reader(self.storage)
+    def __getitem__(self, item):
+        return content_reader(self.storage)[item]
+
+    def __getattr__(self, name):
+        return content_reader(self.storage)[name]
+
+
+def content_reader(file: str) -> Dict:
+    stringList = {}
+    with open(file) as f:
+        for line in f:
+            key, value = line[:-1].split("=")
+            # check for not unique key
+            # check for int value
+            # attribute conflict solution
+            stringList[key] = value
+        return stringList
 
 
 storage = KeyValueStorage("key_storage.txt")
-print(storage.all())
+print(storage["name"], storage.name)
