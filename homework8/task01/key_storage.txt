@@ -1,4 +1,5 @@
 name=kek
-last_name=top
+last_name=sir top
 power=9001
+value=
 song=shadilay
