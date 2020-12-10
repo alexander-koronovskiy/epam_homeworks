@@ -1,20 +1,27 @@
 """
-Класс Storage handler
+Класс KeyValueStorage - обработчик словаря, хранимого в файле
 
-- хранит все значения переданного файла
+- хранит все пары ключ-значение переданного файла
 - производит обработку численных значений
 - содержимое доступно в качестве коллекции
 - реализован доступ к атрибутам содержимого
+
+- реализовать обработку valueError
+- конфликт атрибутов ???
 """
 
-from task01.reader import word_stream
+from task01.reader import word_reader
 
 
-class StorageHandler:
+# шаг 1. класс хранит слова +
+# шаг 2. обработка пар ключ-значение
+class KeyValueStorage:
     def __init__(self, storage):
         self.storage = storage
 
+    def all(self):
+        return word_reader(self.storage)
 
-content = word_stream("key_storage.txt", encoding="utf-8")
-for word in content:
-    print(word)
+
+storage = KeyValueStorage("key_storage.txt")
+print(storage.all())

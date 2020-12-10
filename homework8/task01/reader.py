@@ -1,7 +1,7 @@
-from typing import Generator
+from typing import List
 
 
-def word_stream(file: str, encoding: str) -> Generator:
+def word_reader(file: str, encoding: str = "utf-8") -> List:
     """
     Buffer the file, then handle this to word generator
     """
@@ -39,5 +39,4 @@ def word_stream(file: str, encoding: str) -> Generator:
             words.extend(record.split())
 
             # word streaming
-            for word in words:
-                yield word
+            return words
