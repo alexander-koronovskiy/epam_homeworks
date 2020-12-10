@@ -14,4 +14,13 @@ def test_content_exist():
     assert content.power == 9001
 
 
-# stderr test for numerical key
+def test_err():
+    """
+    numeric key error check
+    """
+    try:
+        content = KeyValueStorage("invalid_storage.txt")
+        test_val = content.name
+    except ValueError:
+        test_val = []
+    assert not test_val

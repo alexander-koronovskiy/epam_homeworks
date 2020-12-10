@@ -33,7 +33,7 @@ def content_reader(file: str) -> Dict:
 
             # check for numerical key
             if key.isnumeric():
-                raise ValueError("number value at fiel cannot be a key")
+                raise ValueError("number value at field cannot be a key")
 
             # saving int value type
             if value.isnumeric():
