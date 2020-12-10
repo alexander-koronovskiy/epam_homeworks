@@ -3,5 +3,4 @@ last_name=sir top
 power=9001
 power=7
 value=
-1=9
 song=shadilay

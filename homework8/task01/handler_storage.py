@@ -1,13 +1,13 @@
 """
 Класс KeyValueStorage - обработчик словаря, хранимого в файле
 
-- хранит все пары ключ-значение переданного файла +++
-- реализован доступ к атрибутам +++
-- реализован доступ к элементам коллекции +++
+- хранит все пары ключ-значение переданного файла
+- реализован доступ к атрибутам
+- реализован доступ к элементам коллекции
 
 - производит обработку численных значений
 - производит valueError обработку
-- решен конфликт приоритета значений атрибутов +++
+- решен конфликт приоритета значений атрибутов
 """
 from typing import Dict
 
@@ -31,8 +31,13 @@ def content_reader(file: str) -> Dict:
             # if line:
             key, value = line[:-1].split("=")
 
-            # check for not unique key
-            # check for int value
+            # check for numerical key
+            if key.isnumeric():
+                raise ValueError("number value at fiel cannot be a key")
+
+            # saving int value type
+            if value.isnumeric():
+                value = int(value)
 
             # attribute value priority conflict solution
             if key not in keys:
@@ -40,7 +45,3 @@ def content_reader(file: str) -> Dict:
             keys.append(key)
 
         return stringList
-
-
-storage = KeyValueStorage("key_storage.txt")
-print(content_reader("key_storage.txt"))
