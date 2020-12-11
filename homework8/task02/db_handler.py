@@ -13,17 +13,41 @@
 import sqlite3 as lite
 from typing import Generator
 
+# реализовать доступ к элементу
+# реализовать протокол __len__
 
-def sql_reader(database: str) -> Generator:
+# спросить про декорирование
+# спросить про mock-тестирование
+
+
+class TableHandle:
+    def __init__(self, base, table):
+        self.base = base
+        self.table = table
+
+    def __getitem__(self, row):
+        return sql_reader(self.base, row, self.table)
+
+    def __getattr__(self, row):
+        return sql_reader(self.base, row, self.table)
+
+
+def sql_reader(database: str, row: str, table: str) -> Generator:
     con = lite.connect(database)
     with con:
         cur = con.cursor()
-        cur.execute("SELECT name FROM presidents")
+
+        cur.execute("SELECT {} FROM {}".format(row, table))
+
         rows = cur.fetchall()
 
         for row in rows:
-            yield row
+            yield row[0]
 
 
-for i in sql_reader("example.sqlite"):
+tab = TableHandle("example.sqlite", "presidents")
+for i in tab["name"]:
+    print(i)
+
+for i in tab.country:
     print(i)
