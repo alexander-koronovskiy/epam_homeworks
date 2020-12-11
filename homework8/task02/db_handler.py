@@ -1,21 +1,14 @@
-import sqlite3
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import sqlite3 as lite
+import sys
 
-conn = sqlite3.connect("mydatabase.db")  # или :memory: чтобы сохранить в RAM
-cursor = conn.cursor()
+con = lite.connect("mydatabase.db")
 
-# Вставляем множество данных в таблицу используя безопасный метод "?"
-albums = [
-    ("Exodus", "Andy Hunter", "7/9/2002", "Sparrow Records", "CD"),
-    ("Until We Have Faces", "Red", "2/1/2011", "Essential Records", "CD"),
-    (
-        "The End is Where We Begin",
-        "Thousand Foot Krutch",
-        "4/17/2012",
-        "TFKmusic",
-        "CD",
-    ),
-    ("The Good Life", "Trip Lee", "4/10/2012", "Reach Records", "CD"),
-]
+with con:
+    cur = con.cursor()
+    cur.execute("SELECT * FROM albums")
+    rows = cur.fetchall()
 
-cursor.executemany("INSERT INTO albums VALUES (?,?,?,?,?)", albums)
-conn.commit()
+    for row in rows:
+        print(row)
