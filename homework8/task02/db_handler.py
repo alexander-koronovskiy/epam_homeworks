@@ -1,23 +1,25 @@
 """
-Написать класс-оболочку TableData для таблицы базы данных,
-которая при инициализации с именем базы данных и таблицей реализует протокол коллекции.
-
-Избегать считывания всей таблицы в память.
-При итерации по записям начните читать первую запись, затем переходите к следующей,
-пока записи не будут исчерпаны.
-
-При написании тестов не всегда необходимо полностью имитировать вызовы базы данных.
-Использовать предоставленный файл example.sqlite в качестве файла базы данных.
+len(presidents) will give current amount of rows in presidents table in database
+presidents['Yeltsin'] should return single data row for president with name Yeltsin
+'Yeltsin' in presidents should return if president with same name exists in table
+object implements iteration protocol. i.e. you could use it in for loops::
+    for president in presidents:
+        print(president['name'])
 """
 
 import sqlite3 as lite
-from typing import Generator, List
+from typing import Callable, Generator, List
 
 # реализовать доступ к элементу +++
 # реализовать протокол __len__
-
-# спросить про декорирование
 # спросить про mock-тестирование
+
+
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
 
 
 class TableHandle:
@@ -25,11 +27,33 @@ class TableHandle:
         self.base = base
         self.table = table
 
-    def __getattr__(self, row):
-        return row_reader(self.base, row, self.table)
+    def _with_cursor(self, fn: Callable):
+        con = lite.connect(self.base)
+        con.row_factory = lite.Row  # or use dict_factory
+        with con:
+            cur = con.cursor()
+            return fn(cur)
+
+    def __len__(self):
+        return self._with_cursor(
+            lambda cur: cur.execute(
+                f"SELECT COUNT(*) AS c FROM {self.table}"
+            ).fetchone()
+        )["c"]
 
     def __getitem__(self, row):
-        # if else handler
+        return self._with_cursor(
+            lambda cur: cur.execute(
+                f"SELECT * FROM {self.table} WHERE name = '{row}'"
+            ).fetchone()
+        )
+
+    def __iter__(self):
+        return iter(
+            self._with_cursor(lambda cur: cur.execute(f"SELECT * FROM {self.table}"))
+        )
+
+    def __getattr__(self, row):
         return elem_reader(self.base, row, self.table)
 
 
@@ -53,9 +77,8 @@ def elem_reader(database: str, row: str, table: str) -> List:
         return rows
 
 
-tab = TableHandle("example.sqlite", "presidents")
-for i in tab["Yeltsin"]:
-    print(i)
-
-for i in tab.country:
-    print(i)
+presidents = TableHandle("example.sqlite", "presidents")
+print("len: ", len(presidents))
+print("name: ", dict(presidents["Yeltsin"]))
+for president in presidents:
+    print(president["name"])
