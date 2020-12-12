@@ -8,10 +8,10 @@ object implements iteration protocol. i.e. you could use it in for loops::
 """
 
 import sqlite3 as lite
-from typing import Callable, Generator, List
+from typing import Dict
 
 
-def dict_factory(cursor, row):
+def dict_factory(cursor, row) -> Dict:
     d = {}
     for idx, col in enumerate(cursor.description):
         d[col[0]] = row[idx]
@@ -35,11 +35,11 @@ class TableHandle:
                 "c"
             ]
 
-    def __getitem__(self, row):
+    def __getitem__(self, key):
         with self._get_connection() as con:
             cur = con.cursor()
             return cur.execute(
-                f"SELECT * FROM {self.table} WHERE name = '{row}'"
+                f"SELECT * FROM {self.table} WHERE name = :key", {"key": key}
             ).fetchone()
 
     def __iter__(self):
@@ -52,13 +52,5 @@ class TableHandle:
         with self._get_connection() as con:
             cur = con.cursor()
             return cur.execute(
-                f"SELECT * FROM {self.table} WHERE name = '{item}' LIMIT 1"
+                f"SELECT * FROM {self.table} WHERE name = :item LIMIT 1", {"item": item}
             ).fetchall()
-
-
-presidents = TableHandle("example.sqlite", "presidents")
-print("len: ", len(presidents))
-print("name: ", dict(presidents["Yeltsin"]))
-for president in presidents:
-    print(president["name"])
-print("Putin" in presidents)
