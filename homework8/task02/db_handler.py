@@ -11,9 +11,9 @@
 """
 
 import sqlite3 as lite
-from typing import Generator
+from typing import Generator, List
 
-# реализовать доступ к элементу
+# реализовать доступ к элементу +++
 # реализовать протокол __len__
 
 # спросить про декорирование
@@ -25,28 +25,36 @@ class TableHandle:
         self.base = base
         self.table = table
 
-    def __getitem__(self, row):
-        return sql_reader(self.base, row, self.table)
-
     def __getattr__(self, row):
-        return sql_reader(self.base, row, self.table)
+        return row_reader(self.base, row, self.table)
+
+    def __getitem__(self, row):
+        # if else handler
+        return elem_reader(self.base, row, self.table)
 
 
-def sql_reader(database: str, row: str, table: str) -> Generator:
+def row_reader(database: str, row: str, table: str) -> Generator:
     con = lite.connect(database)
     with con:
         cur = con.cursor()
-
         cur.execute("SELECT {} FROM {}".format(row, table))
-
         rows = cur.fetchall()
-
         for row in rows:
             yield row[0]
 
 
+# # new 'name' query access realisation
+def elem_reader(database: str, row: str, table: str) -> List:
+    con = lite.connect(database)
+    with con:
+        cur = con.cursor()
+        cur.execute("SELECT * FROM {} WHERE name = '{}'".format(table, row))
+        rows = cur.fetchall()
+        return rows
+
+
 tab = TableHandle("example.sqlite", "presidents")
-for i in tab["name"]:
+for i in tab["Yeltsin"]:
     print(i)
 
 for i in tab.country:
