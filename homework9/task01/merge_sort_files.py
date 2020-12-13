@@ -44,6 +44,8 @@ def int_handler(a: str) -> List:
 
 
 f1 = open("file1.txt")
-for chunk in readInChunks(f1):
-    print(sorted(int_handler(chunk)))  # преобразовать чиса в строке
-f1.close()
+f2 = open("file2.txt")
+for stream in [f1, f2]:
+    for chunk in readInChunks(stream):
+        print(sorted(int_handler(chunk)))  # преобразовать числа в строке
+    stream.close()
