@@ -43,8 +43,14 @@ def int_handler(a: str) -> List:
     return num_list
 
 
-for stream in ["file1.txt", "file2.txt"]:
-    f = open(stream)
-    for chunk in readInChunks(f):
-        print(sorted(int_handler(chunk)))  # преобразовать числа в строке
-    f.close()
+def merge_sorted_files(*file_list: List[str]) -> Iterator:
+    result = []
+    for stream in ["file1.txt", "file2.txt"]:
+        f = open(stream)
+        for chunk in readInChunks(f):
+            result += int_handler(chunk)
+        f.close()
+    print(sorted(result))
+
+
+merge_sorted_files([])
