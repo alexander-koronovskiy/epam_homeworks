@@ -12,7 +12,6 @@ def universal_file_counter(
     dir_path: Path, file_extension: str, tokenizer: Optional[Callable] = None
 ) -> int:
     os.chdir(dir_path)
-    # print(os.path.dirname(__file__))
     count = 0
     for item in Path(".").glob("*"):
         if item.is_file() and str(item)[-len(file_extension) :] == file_extension:
@@ -21,6 +20,3 @@ def universal_file_counter(
                 size = sum(1 for _ in f)
             count += size
     return count
-
-
-print(universal_file_counter("D:\dev\epam courses\homework9\\task03", "txt"))
