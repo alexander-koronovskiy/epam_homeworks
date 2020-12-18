@@ -2,16 +2,14 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def parse_tabs(url: str) -> int:
+def parse_page(url: str):
     response = requests.get(url)
-    soup = BeautifulSoup(response.text, "lxml")
-    return [tabs for tabs in soup.find_all("table")]
+    return BeautifulSoup(response.text, "lxml")
 
 
 url = "https://markets.businessinsider.com/index/components/s&p_500"
-for td in parse_tabs(url):
-    print(td)
-print(len(parse_tabs(url)))
+html_data = [row for row in parse_page(url).find_all("table")]
+print(html_data[1].find_all("th"))  # text.split() - keys for dictionary
 
 
 # получение элементов таблицы с определенным тэгом
