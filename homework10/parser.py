@@ -9,8 +9,8 @@ def parse_page(url: str):
 
 url = "https://markets.businessinsider.com/index/components/s&p_500"
 html_data = [row for row in parse_page(url).find_all("table")]
-print(html_data[1].find_all("th"))  # text.split() - keys for dictionary
 
-
-# получение элементов таблицы с определенным тэгом
-# обработка данных
+keys = []
+for pos in html_data[1].find_all("th"):
+    keys.append(" ".join(pos.text.split()))
+print(list(filter(None, keys)))  # all keys for parse
