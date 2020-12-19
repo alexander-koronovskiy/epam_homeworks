@@ -36,9 +36,9 @@ for pos in html_data[1].find_all("td"):
     vals.append(" ".join(pos.text.split()))
 vals = list(filter(None, vals))
 
-print(vals[::8])
-print(vals[1::8])
-print(vals[7::8])
+
+for i in zip(vals[1::8], vals[7::8]):
+    print("".join(i))
 
 companies_main = {}
 
