@@ -1,23 +1,18 @@
 """
 
-==== 0 обработка информации с главной ==== (+- завершено)
+1. список информации с главной
 
-- годовая динамики в % на главной
--- перевод в рубли
-- последняя открытая/закрытая стоимость
+1.1. годовая динамики в % на главной
+1.1.1 перевод в рубли (можно сделать в выводе)
+1.2 последняя открытая/закрытая стоимость
 
-==== 1 словарь имя-ссылка ==== (завершено)
+2. парсинг с сылок информации о компаниях
 
-- наименование компании
-- ссылка на страницу
+2.1. Код компании
+2.2. P/E компании справа от графика
+2.3 разница между '52 Week Low' и '52 Week High'
 
-==== 2 словарь имя-строка с ссылки ====
-
-- Код компании
-- P/E компании справа от графика
-- разница между '52 Week Low' и '52 Week High'
-
-получить 2 словарь, сложить с третьим
+3. склейка в словарь, обработка данных
 """
 
 import requests
@@ -38,15 +33,17 @@ for pos in html_data[1].find_all("td"):
     vals.append(" ".join(pos.text.split()))
 vals = list(filter(None, vals))
 
-# info from main table
+# chosen info from main table
 main_table_info = [" ".join(i) for i in zip(vals[1::8], vals[7::8])]
 
-# dict(name: link)
-companies_link = {}
-for link in html_data[1].find_all("a"):
-    companies_link[link.text] = "https://markets.businessinsider.com/" + link.get(
-        "href"
-    )
+# src_pages
+src_pages = [
+    "https://markets.businessinsider.com/" + link.get("href")
+    for link in html_data[1].find_all("a")
+]
 
-# dict(name: parse data from link)
-companies_personal = {}
+# parsing from link list (async ?)
+# zip, and handle information
+
+# tests
+print(src_pages)
