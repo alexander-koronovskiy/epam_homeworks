@@ -46,4 +46,5 @@ src_pages = [
 # zip, and handle information
 
 # tests
-print(src_pages)
+explore_link = src_pages[0]
+print(parse_page(explore_link).find_all("div", class_="snapshot__data-item"))
