@@ -2,7 +2,7 @@
 
 1. список информации с главной
 
-1.1. годовая динамики в % на главной
+1.1. годовые динамики в % на главной
 1.2 последняя открытая/закрытая стоимость
 
 2. парсинг с сылок информации о компаниях
@@ -32,16 +32,16 @@ for pos in html_data[1].find_all("td"):
     vals.append(" ".join(pos.text.split()))
 vals = list(filter(None, vals))
 
-# src_pages
+# :links
 src_pages = [
     "https://markets.businessinsider.com/" + link.get("href")
     for link in html_data[1].find_all("a")
 ]
 
-# per year dynamics, last price
-main_table_info = [" ".join(i) for i in zip(vals[1::8], vals[7::8])]
+# name, per year dynamics, last price
+main_table_info = [" ".join(i) for i in zip(vals[::8], vals[1::8], vals[7::8])]
 
-explore_link = src_pages[0]
+explore_link = src_pages[0]  # in loop
 
 # P/E
 colls = []
@@ -49,4 +49,5 @@ for col in parse_page(explore_link).find_all("div", class_="snapshot__data-item"
     colls.append(" ".join(col.text.split()))
 print(colls[6])
 
-print(parse_page(explore_link).find_all("script")[10])
+# min and max handler
+print(parse_page(explore_link).find_all("script")[28])
