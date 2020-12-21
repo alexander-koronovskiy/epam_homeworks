@@ -36,6 +36,9 @@ def get_all_links(url: str) -> List[str]:
 
 
 def get_personal_add_info(link: str) -> str:
+
+    print(str(parse_page(link).find_all("script")[28]))
+
     # P/E
     colls = []
     for col in parse_page(link).find_all("div", class_="snapshot__data-item"):
