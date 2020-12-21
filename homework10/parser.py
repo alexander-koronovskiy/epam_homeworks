@@ -47,7 +47,9 @@ explore_link = src_pages[0]  # in loop
 colls = []
 for col in parse_page(explore_link).find_all("div", class_="snapshot__data-item"):
     colls.append(" ".join(col.text.split()))
-print(colls[6])
+print(colls[8])
 
 # min and max handler
 print(parse_page(explore_link).find_all("script")[28])
+
+# вытащить js данные, все склеить, проанализировать
