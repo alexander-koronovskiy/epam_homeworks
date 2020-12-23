@@ -12,7 +12,7 @@ def parse_page(url: str):
 def get_info_from_main_page(url: str) -> List[str]:
     """
     returns info string for all companies
-    about name, per year dynamics, last price
+    name, last price, per year dynamics
     """
     html_data = parse_page(url).find_all("table")
 
@@ -37,17 +37,23 @@ def get_all_links(url: str) -> List[str]:
 
 def get_personal_add_info(link: str) -> str:
 
-    print(str(parse_page(link).find_all("script")[28]))
+    # словать из строки
+    s = str(parse_page(link).find_all("script")[28])[125:180]
 
     # P/E
     colls = []
     for col in parse_page(link).find_all("div", class_="snapshot__data-item"):
         colls.append(" ".join(col.text.split()))
-    return colls[8] + " + info from js parse"
+    return colls[8] + " ".join(s.split())
 
 
 url = "https://markets.businessinsider.com/index/components/s&p_500"
 links = get_all_links(url)
-add_info = get_personal_add_info(links[0])
 
-print(get_info_from_main_page(url)[0] + add_info)
+i = 3
+print((get_info_from_main_page(url)[i] + " " + get_personal_add_info(links[i])).split())
+
+# задача 1. вывести все в потоках
+
+# задача 2. словари из значений:
+# имя[0], закрытая текущая стоимость[1,2], процентная за год[4], p/e[5], max_profit[8 - 10], code[11]
