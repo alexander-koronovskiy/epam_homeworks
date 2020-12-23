@@ -21,7 +21,7 @@ def get_info_from_main_page(url: str) -> List[str]:
         vals.append(" ".join(pos.text.split()))
     vals = list(filter(None, vals))
 
-    return [" ".join(i) for i in zip(vals[::8], vals[1::8], vals[7::8])]
+    return [" ".join(i) for i in zip(vals[1::8], vals[7::8], vals[::8])]
 
 
 def get_all_links(url: str) -> List[str]:
@@ -37,23 +37,30 @@ def get_all_links(url: str) -> List[str]:
 
 def get_personal_add_info(link: str) -> str:
 
-    # словать из строки
-    s = str(parse_page(link).find_all("script")[28])[125:180]
+    # company code
+    code = str(parse_page(link).find_all("span", class_="price-section__category"))[
+        53:-15
+    ]
+
+    # min, max stonks
+    for elem in parse_page(link).find_all("script"):
+        if not str(elem).find("high52weeks") == -1:
+            stonk_info = " ".join(str(elem)[125:179].split()[1::2])
 
     # P/E
     colls = []
     for col in parse_page(link).find_all("div", class_="snapshot__data-item"):
         colls.append(" ".join(col.text.split()))
-    return colls[8] + " ".join(s.split())
+
+    return code + " " + colls[8][:5] + " " + stonk_info
 
 
 url = "https://markets.businessinsider.com/index/components/s&p_500"
 links = get_all_links(url)
 
-i = 3
+i = 0
 print((get_info_from_main_page(url)[i] + " " + get_personal_add_info(links[i])).split())
 
 # задача 1. вывести все в потоках
-
 # задача 2. словари из значений:
-# имя[0], закрытая текущая стоимость[1,2], процентная за год[4], p/e[5], max_profit[8 - 10], code[11]
+# 2 стоимости, годовая стоимость, % годовая, наименования, код, P/E, max stonks, min stonks
