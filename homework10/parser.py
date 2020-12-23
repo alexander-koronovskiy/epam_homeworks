@@ -86,7 +86,7 @@ def create_threads(n: int):
     for i in range(n):
         my_thread = MyThread(i, url)
         my_thread.start()
-    print(my_thread.result[0])
+    return my_thread.result
 
 
 # loop страниц 1 - 10
@@ -96,4 +96,4 @@ link_quantity = len(links)
 
 # решение с помощью тредов
 # закрытая стоимость[0], % годовая[2], наименования, код[-4], P/E[-3], max stonks[-2], min stonks[-1]
-create_threads(link_quantity)
+print(create_threads(link_quantity))
