@@ -56,20 +56,6 @@ def get_personal_add_info(link: str) -> str:
     return code + " " + colls[8][:5] + " " + stonk_info
 
 
-url = "https://markets.businessinsider.com/index/components/s&p_500"
-links = get_all_links(url)
-
-i = 1
-print(
-    (get_info_from_main_page(url)[i] + " " + get_personal_add_info(links[i])).split()[
-        1:
-    ]
-)
-
-# задача 1. вывести все в потоках
-# закрытая стоимость[0], % годовая[2], наименования, код[-4], P/E[-3], max stonks[-2], min stonks[-1]
-
-
 class MyThread(Thread):
     """
     A threading example
@@ -84,7 +70,8 @@ class MyThread(Thread):
 
     def run(self):
         """thread start"""
-        self.result.append(self.name)
+        i = int(self.name)
+        self.result.append(i)
 
 
 def create_threads(n: int):
@@ -94,7 +81,21 @@ def create_threads(n: int):
     for i in range(n):
         my_thread = MyThread(i)
         my_thread.start()
-    # print(my_thread.result)
+    print(my_thread.result)
 
 
-create_threads(500)
+# loop страниц 1 - 10
+url = "https://markets.businessinsider.com/index/components/s&p_500"
+links = get_all_links(url)
+link_quantity = len(links)
+
+# закрытая стоимость[0], % годовая[2], наименования, код[-4], P/E[-3], max stonks[-2], min stonks[-1]
+i = 1
+print(
+    (get_info_from_main_page(url)[i] + " " + get_personal_add_info(links[i])).split()[
+        1:
+    ]
+)
+
+# решение с помощью тредов
+create_threads(link_quantity)
