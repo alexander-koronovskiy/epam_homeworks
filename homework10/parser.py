@@ -63,15 +63,16 @@ class MyThread(Thread):
 
     result = []
 
-    def __init__(self, name):
+    def __init__(self, name, url):
         """Thread initialization"""
         Thread.__init__(self)
-        self.name = name
+        self.i = int(name)
+        self.url = url
+        self.links = get_all_links(url)
 
     def run(self):
         """thread start"""
-        i = int(self.name)
-        self.result.append(i)
+        self.result.append(self.links[self.i])
 
 
 def create_threads(n: int):
@@ -79,7 +80,7 @@ def create_threads(n: int):
     threads group creation
     """
     for i in range(n):
-        my_thread = MyThread(i)
+        my_thread = MyThread(i, url)
         my_thread.start()
     print(my_thread.result)
 
