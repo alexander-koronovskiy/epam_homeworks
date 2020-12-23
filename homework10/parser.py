@@ -72,7 +72,11 @@ class MyThread(Thread):
 
     def run(self):
         """thread start"""
-        self.result.append(self.links[self.i])
+        self.result.append(
+            get_info_from_main_page(self.url)[self.i]
+            + " "
+            + get_personal_add_info(self.links[self.i])
+        )
 
 
 def create_threads(n: int):
@@ -82,7 +86,7 @@ def create_threads(n: int):
     for i in range(n):
         my_thread = MyThread(i, url)
         my_thread.start()
-    print(my_thread.result)
+    print(my_thread.result[0])
 
 
 # loop страниц 1 - 10
@@ -90,13 +94,6 @@ url = "https://markets.businessinsider.com/index/components/s&p_500"
 links = get_all_links(url)
 link_quantity = len(links)
 
-# закрытая стоимость[0], % годовая[2], наименования, код[-4], P/E[-3], max stonks[-2], min stonks[-1]
-i = 1
-print(
-    (get_info_from_main_page(url)[i] + " " + get_personal_add_info(links[i])).split()[
-        1:
-    ]
-)
-
 # решение с помощью тредов
+# закрытая стоимость[0], % годовая[2], наименования, код[-4], P/E[-3], max stonks[-2], min stonks[-1]
 create_threads(link_quantity)
