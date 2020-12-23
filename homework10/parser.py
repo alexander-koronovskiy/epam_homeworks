@@ -89,11 +89,13 @@ def create_threads(n: int):
     return my_thread.result
 
 
-# loop страниц 1 - 10
-url = "https://markets.businessinsider.com/index/components/s&p_500"
-links = get_all_links(url)
-link_quantity = len(links)
+recordings = []
+for i in range(1, 11):
+    url = "https://markets.businessinsider.com/index/components/s&p_500?p=" + str(i)
+    links = get_all_links(url)
+    link_quantity = len(links)
+    recordings.extend(create_threads(link_quantity))
 
-# решение с помощью тредов
+# вывод хранящейся информации, финальная обработка
 # закрытая стоимость[0], % годовая[2], наименования, код[-4], P/E[-3], max stonks[-2], min stonks[-1]
-print(create_threads(link_quantity))
+print(recordings)
