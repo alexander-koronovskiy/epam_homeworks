@@ -46,7 +46,7 @@ def get_personal_add_info(link: str) -> str:
     # min, max stonks
     for elem in parse_page(link).find_all("script"):
         if not str(elem).find("high52weeks") == -1:
-            stonk_info = " ".join(str(elem)[125:179].split()[1::2])
+            stonk_info = " ".join(str(elem)[127:182].split()[1::2])  # print
 
     # P/E
     colls = []
@@ -89,28 +89,27 @@ def create_threads(n: int):
     return my_thread.result
 
 
-# распределить тут,
+# вывести в поток тут
 recordings = []
-for i in range(1, 2):
+for i in range(1, 3):
     url = "https://markets.businessinsider.com/index/components/s&p_500?p=" + str(i)
     links = get_all_links(url)
     link_quantity = len(links)
     recordings.extend(create_threads(link_quantity))
 
-
-# код[-4], наименования[4:-4],стоимость[0], % годовая[3],  P/E[-3], max stonks[-2], min stonks[-1]
+data_format = []
 for rec in recordings:
     data_elem = rec.split()
-    print(
+    data_format.append(
         {
             "code": data_elem[-4],
             "name": " ".join(data_elem[4:-4]),
-            "per-year-cost": data_elem[0],
+            "per-year-cost": float(data_elem[0].replace(",", "")),
             "p/e": data_elem[3],
-            "max-stonk": data_elem[-2],
-            "min-stonk": data_elem[-1],
+            "max-stonk": float(data_elem[-2][:-1]),
+            "min-stonk": float(data_elem[-1][:-1]),
         }
     )
 
-# обертка времени выполения (в тестах)
-# обертка в словарь
+# , time-test, mock?
+print(data_format)
