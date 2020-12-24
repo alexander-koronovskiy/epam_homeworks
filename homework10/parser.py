@@ -89,13 +89,28 @@ def create_threads(n: int):
     return my_thread.result
 
 
+# распределить тут,
 recordings = []
-for i in range(1, 11):
+for i in range(1, 2):
     url = "https://markets.businessinsider.com/index/components/s&p_500?p=" + str(i)
     links = get_all_links(url)
     link_quantity = len(links)
     recordings.extend(create_threads(link_quantity))
 
-# вывод хранящейся информации, финальная обработка
-# закрытая стоимость[0], % годовая[2], наименования, код[-4], P/E[-3], max stonks[-2], min stonks[-1]
-print(recordings)
+
+# код[-4], наименования[4:-4],стоимость[0], % годовая[3],  P/E[-3], max stonks[-2], min stonks[-1]
+for rec in recordings:
+    data_elem = rec.split()
+    print(
+        {
+            "code": data_elem[-4],
+            "name": " ".join(data_elem[4:-4]),
+            "per-year-cost": data_elem[0],
+            "p/e": data_elem[3],
+            "max-stonk": data_elem[-2],
+            "min-stonk": data_elem[-1],
+        }
+    )
+
+# обертка времени выполения (в тестах)
+# обертка в словарь
