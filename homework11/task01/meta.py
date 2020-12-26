@@ -4,37 +4,16 @@ Remove duplications in variables declarations using metaclasses.
 """
 
 
-class Singleton(type):
-    def __init__(cls, name, bases, dic):
-        super(Singleton, cls).__init__(name, bases, dic)
-        cls.instance = None
-
-    def __call__(cls, *args, **kw):
-        if cls.instance is None:
-            cls.instance = super(Singleton, cls).__call__(*args, **kw)
-        return cls.instance
-
-
-class Meta:
-    __metaclass__ = Singleton
-
-    def __init__(self, a=None):
-        self.a = a
-
-
-class Enum:
-    def __init__(self, *args):
-        self.__keys = args
-
-    def __getattr__(self, key):
-        if key in self.__keys:
-            return key
+class AttributeInitType(type):
+    def __getattr__(self, item):
+        if item in self.keys:
+            return item
         raise AttributeError
 
 
-Colors = Enum("RED", "BLUE", "ORANGE", "BLACK")
-Sizes = Enum("XL", "L", "M", "S", "XS")
+class Colors(metaclass=AttributeInitType):
+    keys = "RED", "BLUE", "ORANGE", "BLACK"
 
 
-c = Meta("parameter")
-print(Colors.RED, c.a)
+class Sizes(metaclass=AttributeInitType):
+    keys = "XL", "L", "M", "S", "XS"
