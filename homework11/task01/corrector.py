@@ -2,32 +2,18 @@
 Vasya implemented nonoptimal Enum classes.
 Remove duplications in variables declarations using metaclasses.
 """
-from enum import Enum
 
 
-class ColorsEnum(Enum):
-    RED = "RED"
-    BLUE = "BLUE"
-    ORANGE = "ORANGE"
-    BLACK = "BLACK"
+class Enum(set):
+    def __getattr__(self, __keys):
+        if __keys in self:
+            return __keys
+        raise AttributeError
 
 
-class SizesEnum(Enum):
-    XL = "XL"
-    L = "L"
-    M = "M"
-    S = "S"
-    XS = "XS"
-
-
-# Should become:
-class ColorsEnum(metaclass=SimplifiedEnum):
-    __keys = ("RED", "BLUE", "ORANGE", "BLACK")
-
-
-class SizesEnum(metaclass=SimplifiedEnum):
-    __keys = ("XL", "L", "M", "S", "XS")
-
+Animals = Enum(["DOG", "CAT", "HORSE"])
+ColorsEnum = Enum(["RED", "BLUE", "ORANGE", "BLACK"])
+SizesEnum = Enum(["XL", "L", "M", "S", "XS"])
 
 assert ColorsEnum.RED == "RED"
 assert SizesEnum.XL == "XL"
