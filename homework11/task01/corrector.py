@@ -4,22 +4,16 @@ Remove duplications in variables declarations using metaclasses.
 """
 
 
-def meth():
-    print("Calling method")
-
-
-class MyMeta(type):
-    @classmethod
-    def __prepare__(cls, name, baseClasses):
-        return {"meth": meth}
-
-    def __new__(cls, name, baseClasses, classdict):
-        return type.__new__(cls, name, baseClasses, classdict)
-
+class Enum(set):
     def __getattr__(self, __keys):
         if __keys in self:
             return __keys
         raise AttributeError
+
+
+class MyMeta(type):
+    def __new__(cls, name, baseClasses, classdict):
+        return type.__new__(cls, name, baseClasses, classdict)
 
 
 class ColorsEnum(metaclass=MyMeta):
@@ -30,4 +24,9 @@ class SizesEnum(metaclass=MyMeta):
     keys = ("XL", "L", "M", "S", "XS")
 
 
+Colors = Enum(["RED", "BLUE", "ORANGE", "BLACK"])
+Sizes = Enum(["XL", "L", "M", "S", "XS"])
+
 print(ColorsEnum.keys)
+assert Colors.RED == "RED"
+assert Sizes.XL == "XL"
