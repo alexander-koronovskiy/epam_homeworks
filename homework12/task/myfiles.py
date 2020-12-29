@@ -1,18 +1,31 @@
-# Импортируем библиотеку, соответствующую типу нашей базы данных
-# В данном случае импортируем все ее содержимое,
-# чтобы при обращении не писать каждый раз имя библиотеки
+import datetime
+
 from peewee import *
 
-# Создаем соединение с нашей базой данных
-# В нашем примере у нас это просто файл базы
-conn = SqliteDatabase("Chinook_Sqlite.sqlite")
+# create database to interact with
+db = SqliteDatabase("posts.db")
 
-# ТУТ БУДЕТ КОД НАШИХ МОДЕЛЕЙ
 
-# Создаем курсор - специальный объект для запросов и получения данных с базы
-cursor = conn.cursor()
+# create a class for blogposts
+class Post(Model):
+    id = PrimaryKeyField()
+    date = DateTimeField(default=datetime.datetime.now)
+    title = CharField()
+    text = TextField()
 
-# ТУТ БУДЕТ НАШ КОД РАБОТЫ С БАЗОЙ ДАННЫХ
+    class Meta:
+        database = db
 
-# Не забываем закрыть соединение с базой данных
-conn.close()
+
+def initialize_db():
+    db.connect()
+    db.create_tables([Post], safe=True)
+    db.close()
+
+
+# if db tables are not created, create them
+# add a new row
+# persist it to db, not necessarily needed
+initialize_db()
+post = Post.create(id=1, title="Some title", text="some text1")
+post.save()
