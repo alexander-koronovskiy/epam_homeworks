@@ -1,4 +1,5 @@
 import datetime
+from datetime import timedelta
 
 from peewee import (
     CharField,
@@ -14,11 +15,8 @@ db = SqliteDatabase("posts.db")
 
 class Homework(Model):
     """
-    Атрибуты:
-
     text - текст задания
-    deadline - хранит объект datetime.timedelta с количеством дней на выполнение
-    created - c точной датой и временем создания
+    created - хранит объект datetime.timedelta c точной датой и временем создания
     """
 
     id = PrimaryKeyField()
@@ -32,10 +30,6 @@ class Homework(Model):
 class Teacher(Model):
     """
     Атрибуты: last_name, first_name
-
-    Методы:
-    create_homework - текст задания и количество дней на это задание,
-    возвращает экземпляр Homework
     """
 
     id = PrimaryKeyField()
@@ -49,10 +43,6 @@ class Teacher(Model):
 class Student(Model):
     """
     Атрибуты: last_name, first_name
-
-    Методы:
-    do_homework - принимает объект Homework и возвращает его же,
-    если задание уже просрочено, то печатет 'You are late' и возвращает None
     """
 
     id = PrimaryKeyField()
@@ -75,12 +65,12 @@ def add_row():
     homework.save()
 
 
-def get_row():
+def get_deadline(deadline: int) -> datetime:
+    """
+    deadline - количество дней на выполнение
+    возвращает точное время дедлайна
+    """
     db.connect()
     row = Homework.get(Homework.id == 1).created
     db.close()
-    return row
-
-
-if __name__ == "__main__":
-    print(get_row())
+    return row + timedelta(days=deadline)

@@ -1,5 +1,5 @@
-from task.myfiles import get_row
+from task.myfiles import get_deadline
 
 
-def test_row():
-    assert get_row()
+def get_deadline():
+    assert str(get_deadline(3).year) == "2021"
