@@ -77,9 +77,10 @@ def add_row():
 
 def get_row():
     db.connect()
-    print(Homework.get(Homework.id == 1).created)
+    row = Homework.get(Homework.id == 1).created
     db.close()
+    return row
 
 
 if __name__ == "__main__":
-    get_row()
+    print(get_row())
