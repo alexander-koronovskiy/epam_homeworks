@@ -6,9 +6,40 @@ db = SqliteDatabase("posts.db")
 
 
 class Homework(Model):
+    """
+    Атрибуты:
+    text - текст задания
+    deadline - хранит объект datetime.timedelta с количеством дней на выполнение
+    created - c точной датой и временем создания
+    """
+
     id = PrimaryKeyField()
     date = DateTimeField(default=datetime.datetime.now)
     title = CharField()
+    text = TextField()
+
+    class Meta:
+        database = db
+
+
+class Teacher(Model):
+    """"""
+
+    id = PrimaryKeyField()
+    date = DateTimeField(default=datetime.datetime.now)
+    title = CharField()
+    text = TextField()
+
+    class Meta:
+        database = db
+
+
+class Student(Model):
+    """"""
+
+    id = PrimaryKeyField()
+    date = DateTimeField(default=datetime.datetime.now)
+    first_name = CharField()
     text = TextField()
 
     class Meta:
@@ -21,6 +52,12 @@ def initialize_db():
     db.close()
 
 
-initialize_db()
-homework = Homework.create(id=2, title="Some title", text="some text1")
-homework.save()
+def add_row():
+    initialize_db()
+    homework = Homework.create(id=8, title="Some title", text="some text1")
+    homework.save()
+
+
+db.connect()
+print(Homework.get(Homework.id == 1).date)
+db.close()
