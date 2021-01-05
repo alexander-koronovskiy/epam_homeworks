@@ -101,3 +101,182 @@ form {
     font-size: 16px;
     color: #F9F0DA;
 }
+
+/* Button
+================================
+*/
+
+.btn {
+	display: inline-block;
+	vertical-align: top;
+	padding: 14px 40px;
+
+	border-radius: 2px;
+	border: 0;
+	cursor: pointer;
+
+	font-family: 'Raleway';
+	font-size: 13px;
+	font-weight: 600;
+	color: #fff;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+
+	transition: background .1s linear;
+}
+
+.btn--red {
+	background-color: #e84545;
+}
+
+.btn--red:hover {
+	background-color: #dd3434;
+}
+
+.btn--blue {
+	background-color: #3519d2;
+}
+
+.btn--blue:hover {
+	background-color: #3c1aff;
+}
+
+.btn--long {
+	min-width: 280px;
+}
+
+/* Testimonials
+==================================
+*/
+
+.reviews {
+	overflow: hidden;
+	background-color: #53354a;
+}
+
+.reviews__item {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.reviews__photo {
+	width: 50%;
+	height: 500px;
+	position: relative;
+}
+
+.reviews__img {
+	position: absolute;
+	top:50%;
+	right: 0;
+	z-index: 1;
+	transform: translateY(-50%);
+}
+
+.reviews__content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+	padding-left: 80px;
+}
+
+.reviews__text {
+margin-bottom: 25px;
+	font-family: 'Cardo', sans-serif;
+	font-style: italic;
+	font-size: 36px;
+	line-height: 1.2;
+	color: #fff;
+}
+
+.reviews__author {
+	font-size: 13px;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #fff;
+}
+
+.reviews__slider {
+	height: 500px;
+	/*overflow: hidden;*/
+}
+
+.slick-dots {
+	display: flex;
+	justify-content: center;
+
+	margin: 0;
+	padding: 0 0 15px;
+	list-style: none;
+	width: 50%;
+	cursor: pointer;
+
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	z-index: 2;
+}
+
+.slick-dots button {
+	width: 20px;
+	height: 20px;
+
+	background: none;
+	border-radius: 50%;
+	border: 0;
+	padding: 0;
+
+	opacity: .5;
+
+	font-size: 0;
+	color: transparent;
+}
+
+.slick-dots .slick-active button {
+	opacity: 1;
+}
+
+/* Download
+==================================
+*/
+
+.download {
+	margin: 90px 0;
+	text-align: center;
+}
+
+.download__title {
+	margin-bottom: 10px;
+	font-size: 28px;
+	color: #2d3033;
+	font-weight: 300;
+}
+
+.download__text {
+	font-size: 13px;
+	color: #2d3033;
+	font-weight: 700;
+	text-transform:uppercase;
+}
+
+/* Copyright
+==================================
+*/
+
+.copyright {
+	padding: 20px 0;
+	background-color: #313454;
+}
+
+.copyright__text {
+	text-align: center;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #808080;
+}
+
+.copyright__text span {
+	color: #fff;
+}
