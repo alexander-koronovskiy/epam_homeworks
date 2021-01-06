@@ -102,6 +102,52 @@ form {
     color: #F9F0DA;
 }
 
+
+/* Intro
+================================
+*/
+
+.intro {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	height: 400px;
+	padding-top: 175px;
+	padding-left: 100px;
+
+	background: #fff;
+	no-repeat center;
+	background-size: cover;
+}
+
+.intro__inner {
+	width: 100%;
+	max-width: 970px;
+	margin: 0, auto;
+	text-align: center;
+}
+
+.intro__title {
+	margin: 0 0 20px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 65px;
+	line-height: 1.1;
+	color: #2d3033;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.intro__subtitle {
+	margin-bottom: 100px;
+
+	font-size: 22px;
+	color: #fff;
+	line-height: 1.5;
+	font-weight: 400;
+}
+
+
 /* Button
 ================================
 */
@@ -145,6 +191,7 @@ form {
 .btn--long {
 	min-width: 280px;
 }
+
 
 /* Testimonials
 ==================================
@@ -238,6 +285,7 @@ margin-bottom: 25px;
 	opacity: 1;
 }
 
+
 /* Download
 ==================================
 */
@@ -261,22 +309,61 @@ margin-bottom: 25px;
 	text-transform:uppercase;
 }
 
+
+/* Table
+==================================
+*/
+
+.table_col {
+      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+      font-size: 14px;
+      width: 660px;
+      background: white;
+      align-items: center;
+      text-align: center;
+      margin: auto;
+      border-collapse: collapse;
+      color: #3E4347;
+      margin-bottom: 50px;
+}
+
+.table_col th:first-child, .table_col td:first-child {
+      color: #F5F6F6;
+      border-left: none;
+}
+
+.table_col th {
+      font-weight: normal;
+      border-bottom: 2px solid #F5E1A6;
+      border-right: 20px solid white;
+      border-left: 20px solid white;
+      padding: 8px 10px;
+}
+
+.table_col td {
+      border-right: 20px solid white;
+      border-left: 20px solid white;
+      padding: 12px 10px;
+      color: #8b8e91;
+}
+
+
 /* Copyright
 ==================================
 */
 
 .copyright {
-	padding: 20px 0;
-	background-color: #313454;
+	  padding: 20px 0;
+	  background-color: #313454;
 }
 
 .copyright__text {
-	text-align: center;
-	font-size: 14px;
-	line-height: 1.5;
-	color: #808080;
+	  text-align: center;
+	  font-size: 14px;
+	  line-height: 1.5;
+	  color: #808080;
 }
 
 .copyright__text span {
-	color: #fff;
+	 color: #fff;
 }
