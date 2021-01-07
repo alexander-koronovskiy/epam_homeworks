@@ -24,7 +24,8 @@ def initialize_db():
     db.close()
 
 
-def add_rows():
+# start app
+def load_rows():
 
     initialize_db()
 
@@ -39,19 +40,21 @@ def add_rows():
         ).save()
 
 
-def get_rows():
+# upload app
+def show_rows():
     db.connect()
-    row = User.get(User.id == 10)
+    users_selected = (
+        User.select()
+        .where(User.id < 10)
+        .limit(5)
+        .order_by(User.id.desc())
+        .dicts()
+        .execute()
+    )
+    row = [user for user in users_selected]
     db.close()
     return row
 
 
 # add_rows()
-print(
-    get_rows().first_name,
-    get_rows().last_name,
-    get_rows().gender,
-    get_rows().phone,
-    get_rows().email,
-    get_rows().state,
-)
+print(show_rows())
