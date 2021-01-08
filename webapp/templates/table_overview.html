@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% for row in rows %}
+    <table>
+        <tr>
+            <td>{{ row['first_name']}}</td>
+            <td>{{ row['last_name']}}</td>
+        </tr>
+    </table>
+    {% endfor %}
+{% endblock %}
