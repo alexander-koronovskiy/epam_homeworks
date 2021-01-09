@@ -2,6 +2,16 @@
 
 {% block body %}
 
+		<script>
+		   function toggle_visibility(id) {
+			   var e = document.getElementById(id);
+			   if(e.style.display == 'block')
+				  e.style.display = 'none';
+			   else
+				  e.style.display = 'block';
+		   }
+		</script>
+
 		<!-- Testimonials -->
 		<div class="reviews" id="reviews">
 			<div class="container">
@@ -23,14 +33,14 @@
 		</div>
 
 		<!-- Download -->
-		<div class="download" id="download">
+		<div class="download" onclick="toggle_visibility('element_toggle');">
 			<div class="container">
-				<a class="btn btn--hide btn--red" href="#">Hide table</a>
+				<a class="btn btn--hide btn--red">Hide table</a>
 			</div>
 		</div>
 
 		<!-- Table -->
-		<div class="table">
+		<div class="table" id='element_toggle'>
 			<div class="container">
 				<table class="table_col">
 					  <colgroup>
