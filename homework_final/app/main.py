@@ -2,10 +2,11 @@ import requests
 from peewee import *
 from randomuser import RandomUser
 
-# create db
+# db
 db = SqliteDatabase("posts.db")
 
 
+# model
 class User(Model):
     first_name = TextField()
     last_name = TextField()
@@ -26,10 +27,15 @@ def initialize_db():
 
 # start app
 def load_rows():
-
     initialize_db()
-
     for user in RandomUser.generate_users(10):
+
+        # gallery loads
+        img_file = open("img/{}.jpg".format(user.get_first_name()), "wb")
+        img_file.write(requests.get(user.get_picture().format()).content)
+        img_file.close()
+
+        # db data loads
         User.create(
             first_name=user.get_first_name(),
             last_name=user.get_last_name(),
@@ -44,17 +50,12 @@ def load_rows():
 def show_rows():
     db.connect()
     users_selected = (
-        User.select().where(User.id < 10).order_by(User.id.desc()).dicts().execute()
+        User.select().where(User.id < 20).order_by(User.id.desc()).dicts().execute()
     )
     row = [user for user in users_selected]
     db.close()
     return row
 
 
-# add_rows()
-# print(show_rows())
-
-for user in RandomUser.generate_users(10):
-    img_file = open("img/{}.jpg".format(user.get_first_name()), "wb")
-    img_file.write(requests.get(user.get_picture().format()).content)
-    img_file.close()
+# load_rows()
+print(show_rows())
