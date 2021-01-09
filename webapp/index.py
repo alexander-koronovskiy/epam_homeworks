@@ -1,3 +1,5 @@
+import random
+
 from flask import Flask, escape, render_template, request
 
 app = Flask(__name__)
@@ -53,8 +55,9 @@ data = [
 
 @app.route("/")
 def index():
-    rows = data
-    return render_template("table_overview.html", title="Overview", rows=rows)
+    return render_template(
+        "table_overview.html", title="Overview", rows=data, user=random.choice(data)
+    )
 
 
 if __name__ == "__main__":
