@@ -1,6 +1,6 @@
 import random
 
-from app.handler import show_rows
+from app.handler import load_rows, show_rows
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -15,4 +15,6 @@ def index():
 
 
 if __name__ == "__main__":
+    # load_rows()
     app.run()
+    # delete bd, delete img
