@@ -58,4 +58,4 @@ def show_rows():
 
 
 # load_rows()
-print(show_rows())
+data = show_rows()
