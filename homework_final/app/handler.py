@@ -31,7 +31,7 @@ def load_rows():
     for user in RandomUser.generate_users(10):
 
         # gallery loads
-        img_file = open("img/{}.jpg".format(user.get_first_name()), "wb")
+        img_file = open("static/img/users/{}.jpg".format(user.get_first_name()), "wb")
         img_file.write(requests.get(user.get_picture().format()).content)
         img_file.close()
 
@@ -55,7 +55,3 @@ def show_rows():
     row = [user for user in users_selected]
     db.close()
     return row
-
-
-# load_rows()
-data = show_rows()
