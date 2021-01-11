@@ -1,7 +1,7 @@
 import random
 
 from app.handler import load_rows, show_rows
-from flask import Flask, render_template
+from flask import Flask, json, render_template, request
 
 app = Flask(__name__)
 
@@ -12,6 +12,11 @@ def index():
     return render_template(
         "table_overview.html", title="Overview", rows=data, user=random.choice(data)
     )
+
+
+@app.route("/upload", methods=["GET", "POST"])
+def upload():
+    pass
 
 
 if __name__ == "__main__":

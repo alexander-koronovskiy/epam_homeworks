@@ -219,8 +219,8 @@ form {
 }
 
 .reviews__photo {
-	width: 50%;
-	height: 500px;
+	width: 35%;
+    height: 350px;
 	position: relative;
 }
 
@@ -241,7 +241,7 @@ form {
 }
 
 .reviews__text {
-margin-bottom: 25px;
+    margin-bottom: 25px;
 	font-family: 'Cardo', sans-serif;
 	font-style: italic;
 	font-size: 36px;
@@ -251,7 +251,7 @@ margin-bottom: 25px;
 
 .reviews__author {
 	font-size: 13px;
-	font-weight: 700;
+	font-weight: 300;
 	text-transform: uppercase;
 	color: #fff;
 }
