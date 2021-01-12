@@ -14,11 +14,6 @@ def index():
     )
 
 
-@app.route("/upload", methods=["GET", "POST"])
-def upload():
-    pass
-
-
 if __name__ == "__main__":
     # load_rows()
     app.run()
