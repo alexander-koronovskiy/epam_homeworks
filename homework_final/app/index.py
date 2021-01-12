@@ -14,6 +14,13 @@ def index():
     )
 
 
+@app.route("/get_value", methods=["GET", "POST"])
+def get_value():
+    name = request.form["name"]
+    print(name)
+    return json.dumps({"value": name})
+
+
 if __name__ == "__main__":
     # load_rows()
     app.run()

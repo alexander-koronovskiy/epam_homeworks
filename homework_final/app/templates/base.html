@@ -12,7 +12,28 @@
     </head>
 
     <body>
-        <!-- Header -->
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<script>
+			function get_value() {
+				$.ajax({
+					type: "POST",
+					url: "/get_value",
+					data: $('form').serialize(),
+					type: 'POST',
+					success: function(response) {
+						var json = jQuery.parseJSON(response)
+						$('#len').html(json.value)
+						console.log(response);
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+		</script>
+
+    	<!-- Header -->
         <header class="header" id="header">
             <div class="container">
 				<div class="header__inner">
@@ -20,12 +41,16 @@
 						<img src="static/img/group.png" alt="">
 					</div>
                     <h1 class="header__text">Enter the users number:</h1>
+
+                    <!-- Form -->
                     <div class="d1">
-                        <form>
-                            <input type="text" placeholder="Get top best rank">
-                            <button type="submit"></button>
+                        <form action="/get_value" method="post" name="form">
+                            <input id="name" name="name" type="text" placeholder="Get top best rank">
+                            <button type="button" value="Отправить" onclick="get_value();"></button>
+                            <div id="len"></div>
                         </form>
                     </div>
+
 				</div>
 			</div>
 		</header>
