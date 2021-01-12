@@ -14,10 +14,11 @@ def index():
     )
 
 
+# table_out
 @app.route("/get_value", methods=["GET", "POST"])
 def get_value():
     name = request.form["name"]
-    print(name)
+    print(show_rows()[: int(name)])
     return json.dumps({"value": name})
 
 

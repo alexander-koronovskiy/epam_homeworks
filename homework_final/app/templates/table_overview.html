@@ -1,6 +1,73 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width = device-width, initial-scale=1" />
 
-{% block body %}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="static/style.css">
+
+		<title>Random Api by K</title>
+    </head>
+
+    <body>
+
+		<script>
+			function get_value() {
+				$.ajax({
+					type: "POST",
+					url: "/get_value",
+					data: $('form').serialize(),
+					type: 'POST',
+					success: function(response) {
+						var json = jQuery.parseJSON(response)
+						$('#value').html(json.value)
+						console.log(response);
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+		</script>
+
+    	<!-- Header -->
+        <header class="header" id="header">
+            <div class="container">
+				<div class="header__inner">
+					<div class="header__logo">
+						<img src="static/img/group.png" alt="">
+					</div>
+                    <h1 class="header__text">Enter the users number:</h1>
+
+                    <!-- Form -->
+                    <div class="d1">
+                        <form action="/get_value" method="post" name="form">
+                            <input id="name" name="name" type="text" placeholder="Get top best rank">
+                            <button type="button" value="Отправить" onclick="get_value();"></button>
+                            <div id="value"></div>
+                        </form>
+                    </div>
+
+				</div>
+			</div>
+		</header>
+
+		<!-- Intro -->
+		<div class="intro" id="intro">
+			<div class="container">
+				<div class="intro__inner">
+					<h3 class="download__title">Are you ready to start? Update User Now!</h3>
+					<div class="download__text">
+						<p>Update User Now!</p>
+					</div>
+					<a class="btn btn--long btn--red" href="#">Update user</a>
+				</div>
+			</div>
+		</div>
 
 		<!-- Testimonials -->
 		<div class="reviews" id="reviews">
@@ -72,4 +139,19 @@
 			}
 		</script>
 
-{% endblock %}
+        <!-- Footer -->
+		<footer class="footer">
+			<div class="container">
+				<div class="copyright">
+					<div class="container">
+						<div class="copyright__text">
+							<div>Copyright © 2021 using Random Api Technologies</div>
+							<div>Made <span>by Alexander K.</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+    </body>
+</html>
