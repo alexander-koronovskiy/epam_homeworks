@@ -23,8 +23,14 @@
 					data: $('form').serialize(),
 					type: 'POST',
 					success: function(response) {
-						var json = jQuery.parseJSON(response)
-						$('#value').html(json.value)
+						var json = jQuery.parseJSON(response);
+						$('#first_name').html(json.value['first_name'])
+						$('#last_name').html(json.value['last_name'])
+						$('#gender').html(json.value['gender'])
+						$('#phone').html(json.value['phone'])
+						$('#email').html(json.value['email'])
+						$('#state').html(json.value['state'])
+
 						console.log(response);
 					},
 					error: function(error) {
@@ -48,7 +54,6 @@
                         <form action="/get_value" method="post" name="form">
                             <input id="name" name="name" type="text" placeholder="Get top best rank">
                             <button type="button" value="Отправить" onclick="get_value();"></button>
-                            <div id="value"></div>
                         </form>
                     </div>
 
@@ -117,14 +122,15 @@
 
                     {% for row in rows %}
 					  <tr>
-                          <td>{{ row['first_name']}}</td>
-                          <td>{{ row['last_name']}}</td>
-                          <td>{{ row['gender']}}</td>
-                          <td>{{ row['phone']}}</td>
-                          <td>{{ row['email']}}</td>
-                          <td>{{ row['state']}}</td>
+                          <td id="first_name">{{ row['first_name']}}</td>
+                          <td id="last_name">{{ row['last_name']}}</td>
+                          <td id="gender">{{ row['gender']}}</td>
+                          <td id="phone">{{ row['phone']}}</td>
+                          <td id="email">{{ row['email']}}</td>
+                          <td id="state">{{ row['state']}}</td>
 					  </tr>
                     {% endfor %}
+
 				</table>
 			</div>
 		</div>

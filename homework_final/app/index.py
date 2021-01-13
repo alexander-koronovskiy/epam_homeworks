@@ -18,8 +18,9 @@ def index():
 @app.route("/get_value", methods=["GET", "POST"])
 def get_value():
     name = request.form["name"]
-    print(show_rows()[: int(name)])
-    return json.dumps({"value": name})
+    # show_rows()[: int(name)]
+    print(json.dumps({"value": show_rows()[int(name)]}))
+    return json.dumps({"value": show_rows()[int(name)]})
 
 
 if __name__ == "__main__":
