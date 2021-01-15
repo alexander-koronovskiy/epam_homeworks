@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="static/style.css">
 
-		<title>Random Api by K</title>
+		<title>{{ title }}</title>
     </head>
 
     <body>
@@ -44,7 +44,7 @@
 					<div class="download__text">
 						<p>Update User Now!</p>
 					</div>
-					<a class="btn btn--long btn--red" href="#">Update user</a>
+					<a class="btn btn--long btn--red" id="user_update">Update user</a>
 				</div>
 			</div>
 		</div>
@@ -135,6 +135,20 @@
                   data: {jsdata: text},
                   success: function(response) {
                     $("#place_for_suggestions").html(response);
+                  },
+                  error: function(xhr) {
+                    //Do Something to handle error
+                  }
+                });
+            });
+
+            $("#user_update").click(function(){
+            	$.ajax({
+                  url: "/user_update",
+                  type: "get",
+                  data: {jsdata: ''},
+                  success: function(response) {
+                    $("#reviews").html(response);
                   },
                   error: function(xhr) {
                     //Do Something to handle error

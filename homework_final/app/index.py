@@ -10,7 +10,10 @@ app = Flask(__name__)
 def index():
     data = show_rows()
     return render_template(
-        "table_overview.html", title="Overview", rows=data, user=random.choice(data)
+        "table_overview.html",
+        title="Random user by K",
+        rows=data,
+        user=random.choice(data),
     )
 
 
@@ -20,6 +23,12 @@ def suggestions():
     suggestions = show_rows()
     suggestions_list = suggestions[: int(text)]
     return render_template("suggestion.html", suggestions=suggestions_list)
+
+
+@app.route("/user_update")
+def user_update():
+    data = show_rows()
+    return render_template("user.html", user=random.choice(data))
 
 
 if __name__ == "__main__":
