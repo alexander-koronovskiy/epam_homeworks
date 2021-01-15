@@ -31,6 +31,12 @@ def user_update():
     return render_template("user.html", user=random.choice(data))
 
 
+@app.route("/users_info")
+def users_info():
+    data = show_rows()
+    return render_template("users_info.html", title="Load Data", users=data)
+
+
 if __name__ == "__main__":
     # load_rows()
     app.run()
