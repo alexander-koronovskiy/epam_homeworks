@@ -1,6 +1,6 @@
 import random
 
-from app.handler import load_rows, show_rows
+from app.handler import del_rows, load_rows, show_rows
 from flask import Flask, json, render_template, request
 
 app = Flask(__name__)
@@ -38,6 +38,6 @@ def users_info():
 
 
 if __name__ == "__main__":
-    # load_rows()
+    del_rows()
+    load_rows(rows=10)
     app.run()
-    # delete bd, delete img

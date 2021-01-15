@@ -1,3 +1,6 @@
+import os
+from typing import List
+
 import requests
 from peewee import *
 from randomuser import RandomUser
@@ -25,13 +28,15 @@ def initialize_db():
     db.close()
 
 
-# start app
-def load_rows():
+def load_rows(rows: int):
+    """
+    loading db data when starting app
+    """
     initialize_db()
-    for user in RandomUser.generate_users(10):
+    for user in RandomUser.generate_users(rows):
 
         # gallery loads
-        img_file = open("static/img/users/{}.jpg".format(user.get_first_name()), "wb")
+        img_file = open(f"static/img/users/{user.get_first_name()}.jpg", "wb")
         img_file.write(requests.get(user.get_picture().format()).content)
         img_file.close()
 
@@ -46,12 +51,24 @@ def load_rows():
         ).save()
 
 
-# upload app
-def show_rows():
+def show_rows() -> List[dict]:
+    """
+    sending data to client from db
+    """
     db.connect()
-    users_selected = (
-        User.select().where(User.id < 20).order_by(User.id.desc()).dicts().execute()
-    )
+    users_selected = User.select().order_by(User.id.desc()).dicts().execute()
     row = [user for user in users_selected]
     db.close()
     return row
+
+
+def del_rows():
+    """
+    delete old information - db and images
+    """
+    img_dir = "static/img/users/"
+    file_list = [f for f in os.listdir(img_dir)]
+    for f in file_list:
+        os.remove(os.path.join(img_dir, f))
+    if db:
+        os.remove("posts.db")
