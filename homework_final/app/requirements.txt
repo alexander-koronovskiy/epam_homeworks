@@ -1,4 +1,5 @@
-randomuser
 pytest
 peewee
 flask
+request
+randomuser
