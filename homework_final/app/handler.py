@@ -34,11 +34,6 @@ def load_rows(rows: int):
     """
     initialize_db()
 
-    """
-    for user in requests.get(f'https://randomuser.me/api/?results={str(rows)}'):
-        print(user)
-
-    """
     for user in RandomUser.generate_users(rows):
 
         # gallery loads
