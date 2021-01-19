@@ -1,9 +1,7 @@
 FROM python:latest
 MAINTAINER Alexander Koronovskiy 'alexander.koronovskiy.com'
-RUN apt-get update -y
-RUN apt-get install -y python-pip python-dev build-essential
-COPY . /app
-WORKDIR /app
+COPY requirements.txt /
 RUN pip install -r requirements.txt
-ENTRYPOINT ['python']
-CMD ['index.py']
+COPY app /app
+WORKDIR /app
+CMD python index.py

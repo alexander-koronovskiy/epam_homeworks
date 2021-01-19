@@ -1,7 +1,7 @@
 import random
 
-from app.handler import del_rows, load_rows, show_rows
 from flask import Flask, json, render_template, request
+from handler import del_rows, load_rows, show_rows
 
 app = Flask(__name__)
 
@@ -40,4 +40,4 @@ def users_info():
 if __name__ == "__main__":
     del_rows()
     load_rows(rows=10)
-    app.run()
+    app.run(host="0.0.0.0")
