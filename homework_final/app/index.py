@@ -38,6 +38,6 @@ def users_info():
 
 
 if __name__ == "__main__":
-    # del_rows()
-    # load_rows(rows=10)
+    del_rows()
+    load_rows(rows=10)
     app.run()
