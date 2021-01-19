@@ -74,9 +74,7 @@
 		<!-- Download -->
 		<div class="download">
 			<div class="container">
-				<textarea id="text-val" rows="4">This is the content of my file</textarea><br/>
-				<input type="button" id="dwn-btn" value="Download dinamically generated text file"/>
-				<a class="btn btn--hide btn--red" href="/users_info" target="_blank">Load Data</a>
+				<a class="btn btn--hide btn--red" id="dwn-btn">Load Data</a>
 			</div>
 		</div>
 
@@ -128,9 +126,10 @@
 
 		<!--Scripts-->
         <script>
+
+        	// Table update information
             $("#search_form_input").click(function(){
                 var text = $("#text").val();
-
                 $.ajax({
                   url: "/suggestions",
                   type: "get",
@@ -144,6 +143,7 @@
                 });
             });
 
+			// User update information
             $("#user_update").click(function(){
             	$.ajax({
                   url: "/user_update",
@@ -158,27 +158,27 @@
                 });
             });
 
+			// Json file download
             function download(filename, text) {
 				var element = document.createElement('a');
 				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
 				element.setAttribute('download', filename);
-
 				element.style.display = 'none';
 				document.body.appendChild(element);
-
 				element.click();
-
 				document.body.removeChild(element);
 			}
 
-			// Start file download.
 			document.getElementById("dwn-btn").addEventListener("click", function(){
-				// Generate download of hello.txt file with some content
-				var text = document.getElementById("text-val").value;
-				var filename = "hello.txt";
-
-				download(filename, text);
+				var filename = "data.json";
+				$.ajax({
+                  url: "/users_info",
+                  type: "get",
+                  data: {jsdata: ''},
+                  success: function(response) {download(filename, response);}
+                  });
 			}, false);
+
         </script>
 
     </body>

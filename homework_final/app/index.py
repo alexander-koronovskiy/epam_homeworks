@@ -34,7 +34,7 @@ def user_update():
 @app.route("/users_info")
 def users_info():
     data = show_rows()
-    return render_template("users_info.html", title="Load Data", users=data)
+    return render_template("users_info.html", users=data)
 
 
 if __name__ == "__main__":
