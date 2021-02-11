@@ -4,7 +4,7 @@ def word_counter(file):
     word_map = {}
 
     with open(file) as f:
-        words += f.readline().split()
+        words.extend(f.readline().split())
 
     for word in words:
         if word not in word_map:
